@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en-LT"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Fast.BI - VsCode IDE Wiki</title>
+    <link rel="stylesheet" href="/templates/css/nicepage.css" media="screen">
+    <link rel="stylesheet" href="/templates/css/vscode-coder-ide-wiki.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/templates/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/templates/js/nicepage.js" defer=""></script>
+    <link rel="icon" href="/images/favicon.png">
+    <link id="u-theme-google-font" rel="stylesheet" href="/templates/css/fonts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="screen">
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Bi-Platform",
+		"logo": "//images/twitter_header_photo_2.png"
+}</script>
+    <meta name="theme-color" content="#232b79">
+    <meta property="og:title" content="VsCode IDE Wiki">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body data-path-to-root="/" data-include-products="false" class="u-body u-xl-mode" data-lang="en">
+    <section class="u-border-2 u-border-black u-border-no-left u-border-no-right u-border-no-top u-clearfix u-container-align-left u-section-1" id="sec-c249">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="fr-view u-align-left u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: center;">Visual Studio Code - How to start.</h1>
+          <p style="text-align: left;">
+            <span style="line-height: 2.0;">1. Open the main page and click on the Coder icon. In the open window, select "Sign in with Fast.BI - &lt;Customer Name&gt;".</span>
+            <span style="line-height: 2.0;">
+              <br>
+              <img src="//images/image1.png" width="570" align="center" style="width: 450px;" class="fr-dib fr-fic fr-fil">
+            </span>
+          </p>
+          <p>This will initiate the VSCode Cloud workspace IDE, your dedicated workspace for data modeling. Please wait until your workspace will be deployed and customized. It can take from 5-10min.</p>
+          <p>
+            <br>
+          </p>
+          <p>2. The first time you open your dedicated workspace, you should confirm the authorship of files. Check "Trust the authors of all files in the parent folder 'home'" and then click "Yes, I trust the authors."<span style="line-height: 2.0;">
+              <img src="//images/image.png" width="570" align="center" style="width: 518px;" class="fr-dib fr-fic fr-fil">
+            </span>
+          </p>
+          <p>
+            <span style="line-height: 2.0;">3. On the Welcome screen, you can customize themes and other settings to tailor your workspace. When you're finished, click "Mark Done" at the bottom.</span>
+          </p>
+          <p>
+            <img src="//images/image2.png" width="570" align="center" style="width: 570px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>
+            <br>
+          </p>
+          <p>4. Now, just a few steps remain to start coding. For the first time, you need to create a new SSH key and login to Google Cloud SDK. Click on "three lines" options icon in the upper left corner, when the window pops up, select Terminal &gt;&gt; New Terminal.</p>
+          <p>
+            <img src="//images/image41.png" width="570" align="center" style="width: 616px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>At the bottom of the screen, a Terminal will open. Here, you can run all your commands. To generate a new SSH key, copy and paste the following <span style="font-weight: 700; font-style: italic;">command: ssh-keygen -t ed25519 -C "your_email@example.com"</span> (don't forget to replace your email address). Then press the "Enter" key. The SSH key generation wizard will prompt you for information; you can generally press "Enter" to accept defaults until it's done generating the key.<img src="//images/image5.png" width="570" align="center" style="width: 628px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>Once the new key is generated, you need to copy the public key and add it to your Repo Account SSH keys. To retrieve the key, run the following <span style="font-weight: 700; font-style: italic;">command in the terminal: cat /home/coder/.ssh/id_ed25519.pub.</span> Copy the output, go to "https://gitlab.fast.bi/-/profile/keys," click "Add new key," paste your previous output, and then click "Add key."
+          </p>
+          <p>
+            <img src="//images/image6.png" width="570" align="center" style="width: 636px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>After successfully adding your new key, return to your workspace IDE and proceed to the next step (step 5).</p>
+          <p>
+            <br>
+          </p>
+          <p>5. Cloning your repository*. (Skip this step if you are working in Fast.BI-Coder, the repo already present in the IDE)<br>In the main page, click on the GitLab icon. It will open your code repository space. Navigate to the Data-Model folder and click on the DBT-Data-Model repository. In the upper-right corner, you will find a "Clone" icon. Click on it and copy the "Clone with SSH" repository link. Then, go back to the terminal in your workspace IDE and run the following <span style="font-weight: 700; font-style: italic;">command: git clone git@gitlab.fast.bi:bi-platform/terasky/data-model/dbt-data-model.git</span>. If prompted to continue,<span style="font-weight: 700; font-style: italic;">&nbsp;type "yes."</span>
+          </p>
+          <p>
+            <img src="//images/image7.png" width="570" align="center" style="width: 826px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>
+            <br>
+          </p>
+          <p>6. With your data modeling repository and dbt projects cloned successfully, you now need to authenticate into the Google Cloud Platform. To do this, run a few commands.<br>First, execute the <span style="font-weight: 700; font-style: italic;">command: gcloud auth login</span>. This will open a Google authentication web link. Follow the instructions to obtain an authorization code. <span style="font-weight: 700; font-style: italic;">Copy the provided authorization code, paste it into the terminal, and press "Enter"</span> on your keyboard.<br>Next, run a similar command, but this one is necessary for proper dbt engine functionality:<span style="font-weight: 700; font-style: italic;">&nbsp;gcloud auth application-default login</span>. Follow the same steps as before. After successfully logging into the Google Cloud Project, you can start working with your dbt projects.
+          </p>
+          <p>
+            <br>
+          </p>
+          <p>7. The last step is to choose your DBT Project.<br>Click on "three lines" options icon in the upper left corner. Then choose File &gt;&gt; Open Folder...
+          </p>
+          <p>
+            <img src="//images/16.png" style="width: 566px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>On the TOP you'll see the "Open Folder" window pop-up, now you'll need to choose your dbt project folder. In our case we need to choose fast_bi_notebook &gt;&gt; dbt-data-model &gt;&gt; jaffle_shop_dbt_elt. Our dbt project is &nbsp;jaffle_shop_dbt_elt. Then Click OK.</p>
+          <p>
+            <img src="//images/24.png" style="width: 652px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>At first time using the Coder IDE you will get notification messages to connect to Turntable DBT extension, dtb Power user extension and GIT extension.</p>
+          <p>
+            <img src="//images/25.png" style="width: 600px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>First for the Git (Extension), click on "Always".<br>Second for the dbt Power User (Extension) click on "Ignore".<br>Third for the Turntable for dbt Core (Extension) click on "Log In" and follow the instruction.
+          </p>
+          <p>Then Extension window pops-up. Click on "Allow" button.&nbsp;</p>
+          <p>
+            <img src="//images/26.png" style="width: 480px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>Another External Website window pops-up. Click on "Open" button.</p>
+          <p>
+            <img src="//images/27.png" style="width: 476px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>Now you was transfered to Turntable Extension Authenticate site. Click on "Continue with Google" button.</p>
+          <p>
+            <img src="//images/28.png" style="width: 448px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>Choose your Google Fast.BI account.</p>
+          <p>
+            <img src="//images/31.png" style="width: 455px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>
+            <br>
+          </p>
+          <p>After authentication is successfully finished, click on the "Get access code" button.</p>
+          <p>
+            <img src="//images/29.png" style="width: 481px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>Copy the code, and back to Fast.BI Coder online IDE workspace. At the lower right corner, you see Signing into Turntable... Click on "Cancel" button, or if you see already Failed to sign in to Turntable click on "Enter Access Code" button.&nbsp;</p>
+          <p>
+            <img src="//images/30.png" style="width: 525px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>Paste your access code, and click enter.</p>
+          <p>
+            <img src="//images/32.png" style="width: 519px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>
+            <br>
+          </p>
+          <p>8. Start your data modeling - in the left corner, at workspace ide, you will see your dbt project - dbt-data-model - files structure.<br>Open model directory, choose one of the model and right-click on it.<br>In the open window, select "Open in Integrated Terminal."
+          </p>
+          <p>
+            <img src="//images/34.png" style="width: 684px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>A new terminal window will open at the bottom of the screen, allowing you to interact with data-modeling model.</p>
+          <p>PROBLEMS - Here you will be informed about all issues related with your data model.</p>
+          <p>OUTPUT - The information windows about compilation process.</p>
+          <p>TERMINAL - Command line window.</p>
+          <p>LINEAGE - Your DBT Project lineage.</p>
+          <p>DOCUMENTATION EDITOR - DBT Project Model metadata documentation.</p>
+          <p>COLUMN-LEVEL LINEAGE - Track your transformation for columns.</p>
+          <p>QUERY PREVIEW - See your model output as data.</p>
+          <p>
+            <img src="//images/33.png" style="width: 811px;" class="fr-dib fr-fic fr-fil">For guidance on working with all platform services during development, refer to the next page, "Fast.BI-DataModel-Development."
+          </p>&nbsp;<p></p>
+        </div>
+      </div>
+    </section>
+    <div class="rj-floating-menu">
+      <button class="rj-btn-floating" onclick="window.location.href='/homepage'" dom-event="rj-togglefade-panel" dom-target="#PanelfloatingConfig" dom-status="false">
+        <i class="fa-solid fa-house-chimney"></i>
+    </button>
+    <style>
+      .rj-floating-menu .rj-btn-floating{
+        position: fixed;
+        right: 15px;
+        bottom: 15px;
+        border: none;
+        outline: none;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 33px;
+        background: rgba(157, 171, 255, 0.25);
+        color: #fff;
+        pointer-events: auto;
+    }
+      
+      .rj-floating-menu .rj-btn-floating i{
+        color: #858db1;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+    }
+    </style>
+    </div>
+</body></html>

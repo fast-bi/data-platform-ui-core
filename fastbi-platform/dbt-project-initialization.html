@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="BI, PLATFORM, DATA, ELT, DATA-MODEL, DATA-CATALOG, DATA-QUALITY">
+    <meta name="description"
+          content="Are you ready to revolutionize the way you handle Business Analysis and Data Modeling? Look no further. Fast BI Platform is your ultimate solution for DataOps...">
+    <title>Fast.BI - Platform Statistics</title>
+    <link rel="canonical" href="Business Analysis. FAST.">
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <script class="u-script" type="text/javascript" src="/templates/js/home.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/templates/js/dbt-project-initialization.js" defer=""></script>
+    <link rel="stylesheet" href="/templates/css/home.css" media="screen">
+    <!--    <link rel="stylesheet" href="/templates/css/nicepage.css" media="screen">-->
+    <!--    <link rel="stylesheet" href="/templates/css/dbt-project-initialization.css" media="screen">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+    <link rel="stylesheet" href="/templates/css/dbt-project-initialization.css" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.0/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.0/jquery.nicescroll.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.18.0/js/md5.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css"
+          media="screen">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+<div class="rj-layout">
+    <div class="rj-container-sections">
+        <div id="ContentLeft" class="rj-section rj-left">
+            <div class="rj-panel-vertical">
+                <div class="rj-panel-content">
+                    <header id="MenuVertical" class="rj-header rj-full-section-movil">
+                        <nav class="rj-navbar">
+                            <ul class="rj-list">
+                                <style>
+                                    .rj-navbar {
+                                        overflow-x: auto; /* Enable horizontal scrolling if needed */
+                                        white-space: nowrap; /* Prevent wrapping of menu items */
+                                    }
+
+                                    .scroll-down-btn {
+                                        display: none; /* Initially hide scroll-down button */
+                                        position: fixed;
+                                        bottom: 20px;
+                                        right: 20px;
+                                        z-index: 1000;
+                                    }
+                                </style>
+                                <li class="rj-item rj-img-logo">
+                                    <a href="/homepage"><img src="/images/logo_transparent.png" alt="Fast.BI"
+                                                             title="Fast.BI"></a>
+                                </li>
+
+                                <li id="home" class="rj-item">
+                                    <a class="rj-link" href="/homepage"><i class="fa-solid fa-house"></i> <b
+                                            class="rj-title-link"> Home</b></a>
+                                </li>
+
+                                <li class="line"></li>
+                                <li id="init" class="rj-item"><a class="rj-link" href="/dbt-init"><i
+                                        class="fa-regular fa-circle-play"></i> <b class="rj-title-link"> Data Project
+                                    Initialization</b></a></li>
+                                <li id="mnmgt" class="rj-item"><a class="rj-link" href="/dbt-management"><i
+                                        class="fa-solid fa-screwdriver-wrench"></i> <b class="rj-title-link"> Data
+                                    Project Management</b></a></li>
+                                <li id="stats" class="rj-item"><a class="rj-link" href="/stats"><i
+                                        class="fa-solid fa-chart-bar"></i> <b class="rj-title-link"> Data Plaform
+                                    Stats</b></a></li>
+                                <li class="line"></li>
+
+                                {% if airbyte_link %}
+                                <li id="airbyte" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ airbyte_link }}"
+                                       data-iframe-href="/data-replication"><i class="fa-regular fa-object-ungroup"></i>
+                                        <b class="rj-title-link"> Data Replication</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if ide_link %}
+                                <li id="ide" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ ide_link }}"
+                                       data-iframe-href="/data-manipulation"><i class="fa-solid fa-terminal"></i> <b
+                                            class="rj-title-link"> Data Modeling</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if airflow_link %}
+                                <li id="airflow" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ airflow_link }}"
+                                       data-iframe-href="/data-orchestration"><i class="fa-solid fa-timeline"></i> <b
+                                            class="rj-title-link"> Data Orchestration</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if data_quality_link %}
+                                <li id="redata" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ data_quality_link }}"
+                                       data-iframe-href="/data-quality"><i class="fa-solid fa-stethoscope"></i> <b
+                                            class="rj-title-link"> Data Quality</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if data_catalog_link %}
+                                <li id="dbtdocs" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ data_catalog_link }}"
+                                       data-iframe-href="/data-catalog"><i class="fa-solid fa-rectangle-list"></i> <b
+                                            class="rj-title-link"> Data Catalog</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if datahub_link %}
+                                <li id="datahub" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ datahub_link }}"
+                                       data-iframe-href="/data-governance"><i class="fa-solid fa-circle-info"></i> <b
+                                            class="rj-title-link"> Data Governance</b></a>
+                                </li>
+                                {% endif %}
+
+                                <li class="line"></li>
+
+                                {% if lightdash_link %}
+                                <li id="bi" class="rj-item">
+                                    <a class="rj-link" href="{{ lightdash_link }}"><i class="fa-solid fa-chart-pie"></i>
+                                        <b class="rj-title-link"> Data Analysis</b></a>
+                                </li>
+                                {% endif %}
+
+                                <li class="line"></li>
+
+                                {% if monitoring_link %}
+                                <li id="grafana" class="rj-item">
+                                    <a class="rj-link" href="{{ monitoring_link }}"><i
+                                            class="fa-solid fa-circle-exclamation"></i> <b class="rj-title-link"> Data
+                                        Platform Monitoring</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if s3_link %}
+                                <li id="objstr" class="rj-item">
+                                    <a class="rj-link" href="{{ s3_link }}"><i class="fa-regular fa-hard-drive"></i> <b
+                                            class="rj-title-link"> Data Platform Storage</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if cicd_workflow_link %}
+                                <li id="cicdworkflows" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ cicd_workflow_link }}"
+                                       data-iframe-href="/data-platform-workflows"><i
+                                            class="fa-solid fa-list-check"></i> <b class="rj-title-link"> Data Platform
+                                        Workflows</b></a>
+                                </li>
+                                {% endif %}
+
+                                <li class="line"></li>
+
+                                {% if gitlab_link %}
+                                <li id="git" class="rj-item">
+                                    <a class="rj-link" href="{{ gitlab_link }}"><i class="fa-brands fa-git-alt"></i> <b
+                                            class="rj-title-link" target="_blank"> Data Repository</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if bi_platform_bq_id %}
+                                <li id="gbq" class="rj-item">
+                                    <a class="rj-link"
+                                       href="https://console.cloud.google.com/bigquery?project={{ bi_platform_bq_id }}"><i
+                                            class="fa-solid fa-database"></i> <b class="rj-title-link" target="_blank">
+                                        BigQuery</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if bi_platform_gcp_id %}
+                                <li id="gcp" class="rj-item">
+                                    <a class="rj-link"
+                                       href="https://console.cloud.google.com/welcome?project={{ bi_platform_gcp_id }}"><i
+                                            class="fa-brands fa-google"></i> <b class="rj-title-link" target="_blank">
+                                        Google Cloud Platform</b></a>
+                                </li>
+                                {% endif %}
+
+                                <li class="line"></li>
+
+                                {% if wiki_link %}
+                                <li id="wiki" class="rj-item">
+                                    <a class="rj-link" href="{{ wiki_link }}"><i class="fa-brands fa-wikipedia-w"></i>
+                                        <b class="rj-title-link" target="_blank"> Platform Wiki</b></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <div id="ContentRight" class="rj-section rj-right">
+            <div class="rj-panel-horizontal">
+                <div class="rj-panel-content">
+                    <header id="MenuHorizontal" class="rj-header">
+                        <nav class="rj-navbar">
+                            <ul class="rj-list">
+                                <li class="rj-item rj-btn-toggle-menu rj-item-active">
+                                    <button type="button" id="BtnCollapseMenuPrincipal" class="rj-btn-toggle"
+                                            dom-event="CollapseMenuPrincipal" dom-target-collapsed="#ContentLeft"
+                                            dom-target-expanded="#ContentRight" dom-status="false">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                </li>
+                                <li class="rj-item">
+                                    <div class="rj-cnt-form-search">
+                                        <input type="text" class="rj-form-control" placeholder="Search...">
+                                        <button type="button"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </li>
+                                <li class="rj-item">
+                                    <button type="button" id="BtnPanelNotifications" class="rj-link">
+                                        <span {% if welcome_message %} style="background-color: #c75252;" {% endif
+                                              %}></span>
+                                        <i class="fa-solid {% if welcome_message %}fa-bell{% else %}fa-bell-slash{% endif %}"
+                                           {% if welcome_message %} style="color: #c75252;" {% else %}
+                                           style="color: #6788ff;" {% endif %}></i>
+                                    </button>
+                                </li>
+                                <div class="notification-popup" id="notificationPopup">
+                                    <div class="card">
+                                        <div class="card-details">
+                                            <p class="text-title"><b>Nofitications</b></p>
+                                            <p class="text-body" id="notificationMessage">{{ welcome_message }}</p>
+                                        </div>
+                                        <button class="card-button" id="closeNotification">Close</button>
+                                    </div>
+                                </div>
+                                <script>
+                                    var message = '{{ welcome_message }}';
+                                </script>
+                                <li class="rj-item rj-img-avatar">
+                                    <button type="button" id="BtnPanelProfile" class="rj-btn-img"
+                                            dom-event="rj-togglefade-panel" dom-target="#PanelProfile"
+                                            dom-status="false">
+                                        <img id="userAvatar" src="" alt="User Avatar" title="User Avatar">
+                                    </button>
+                                    <script>
+                                        // Function to generate a random avatar based on the user's username
+                                        function generateAvatar(username) {
+                                            // Generate MD5 hash of the username
+                                            var hash = md5(username.toLowerCase());
+
+                                            // Construct the URL for the avatar image
+                                            var avatarUrl = 'https://www.gravatar.com/avatar/' + hash + '?d=identicon';
+
+                                            // Set the src attribute of the userAvatar element to the generated avatar URL
+                                            document.getElementById('userAvatar').src = avatarUrl;
+                                        }
+
+                                        // Example usage: Replace 'current_user.username' with the actual username
+                                    </script>
+                                    <script>
+                                        var currentUsername = "{{ user_email }}";
+                                        generateAvatar(currentUsername);
+                                    </script>
+                                </li>
+                            </ul>
+                        </nav>
+                    </header>
+                </div>
+            </div>
+            <div class="rj-panel-profile">
+                <div class="rj-panel-content">
+                    <header id="PanelProfile" class="rj-header rj-full-section-movil">
+                        <div class="rj-panel-caret"></div>
+                        <nav class="rj-navbar">
+                            <h2 class="rj-title-panel">Welcome, <b>{{ user_name }} !</b></h2>
+                            <div class="rj-profile-info">
+                                <div class="rj-cnt-row">
+                                    <div class="rj-cnt-cols">
+                                        <div class="rj-col-4">
+                                            <div class="rj-img-profile"><span><img id="userAvatar2" src=""
+                                                                                   alt=""></span></div>
+                                            <script>
+                                                // Function to generate a random avatar based on the user's username
+                                                function generateAvatar(username, id) {
+                                                    // Generate MD5 hash of the username
+                                                    var hash = md5(username.toLowerCase());
+
+                                                    // Construct the URL for the avatar image
+                                                    var avatarUrl = 'https://www.gravatar.com/avatar/' + hash + '?d=identicon';
+
+                                                    // Set the src attribute of the userAvatar element to the generated avatar URL
+                                                    document.getElementById(id).src = avatarUrl;
+                                                }
+
+                                                // Example usage: Replace 'current_user.username' with the actual username
+                                                var currentUsername = "{{ user_email }}";
+                                                generateAvatar(currentUsername, 'userAvatar2');
+                                            </script>
+                                        </div>
+                                        <div class="rj-col-8">
+                                            <div class="rj-list-info-text">
+                                                <p class="rj-info-text rj-black-thin"> Logged in with: <br> {{
+                                                    user_email }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rj-list-page-urls">
+                                <div class="rj-cnt-row">
+                                    <div class="rj-cnt-cols">
+                                        <div class="rj-col-12">
+                                            <a href="/profile" class="rj-link-control"><i class="fa fa-user"></i> My
+                                                Profile</a>
+                                            <a href="/configuration" class="rj-link-control"><i class="fa fa-cog"></i>
+                                                Site Configuration</a>
+                                            <a href="{{ url_for('logout') }}" class="rj-link-control"><i
+                                                    class="fa fa-sign-out-alt"></i> LogOut</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <!-- Platform Settings -->
+                                <div class="rj-list-page-urls" id="platform-settings-section">
+                                    <div class="rj-cnt-row">
+                                        <div class="rj-cnt-cols">
+                                            <div class="rj-col-12">
+                                                <h3 class="rj-title-panel" id="platform-settings-title">Platform Settings</h3>
+                                                <a class="rj-link-control" dom-event="ChangeScreenColor" dom-mode="light">
+                                                    <i class="fa-solid fa-moon"></i> 
+                                                    <span id="theme-text">Dark Theme</span>
+                                                    <i class="fa-solid fa-circle-info setting-info-icon" title="Change theme from light to dark and vice versa."></i>
+                                                </a>
+                                                <a class="rj-link-control" dom-event="Follow" dom-mode="off">
+                                                    <i class="fa-solid fa-lock"></i> 
+                                                    <span>Follow Mode</span>
+                                                    <i class="fa-solid fa-circle-info setting-info-icon" title="Controls whether links open in a new tab. Locked = same tab, Unlocked = new tab."></i>
+                                                </a>
+                                                <a class="rj-link-control" dom-event="Iframe_enabled" dom-mode="disabled">
+                                                    <i class="fa-solid fa-expand"></i> 
+                                                    <span id="iframe-mode-text">Embed Services</span>
+                                                    <i class="fa-solid fa-circle-info setting-info-icon" title="Controls whether links are from services or from the platform."></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                  var followMode = "{{ follow_mode }}"; // Load follow mode state from Flask
+                                  var iframeMode = "{{ iframe_mode }}"; // Load iframe mode state from Flask
+                                  var lightDarkMode = "{{ light_dark_mode }}"; // Load light/dark mode state from Flask
+                                  var user_id = "{{ user_id }}" || "";  // Load User ID from Flask
+                                </script>
+                        </nav>
+                    </header>
+                </div>
+            </div>
+            <div class="container">
+                <div class="card-project">
+                    <div class="card-header">
+                        <h1 class="card-title">DBT Project Initialization</h1>
+                        <p class="card-description">Configure your new DBT project settings with <b>Kubernetes Pod</b>
+                            operator</p>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="tabs">
+                            {% if enable_bash_operator_tab %}
+                            <button class="tab" data-tab="shared" id="bash">
+                                <i class="fas fa-terminal"></i>
+                                Bash Operator
+                            </button>
+                            {% endif %}
+                            <button class="tab active" data-tab="shared" id="k8s">
+                                <i class="fas fa-cloud"></i>
+                                Kubernetes Pod
+                            </button>
+                            {% if enable_gke_operator_tab %}
+                            <button class="tab" data-tab="shared" id="gke">
+                                <i class="fas fa-cogs"></i>
+                                GKE Operator
+                            </button>
+                            {% endif %}
+                            {% if enable_api_operator_tab %}
+                            <button class="tab" data-tab="shared" id="api">
+                                <i class="fas fa-server"></i>
+                                API Server
+                            </button>
+                            {% endif %}
+                        </div>
+
+                        <div id="shared-content" class="tab-content active">
+                            <form id="dbt-form" class="deployment-form">
+                                <!-- GKE specific Information Section -->
+                                <div id="gke-specific-section" class="form-section">
+                                    <h3 class="section-title">Cluster configuration</h3>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label class="form-label">Name
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The unique name assigned to the Kubernetes cluster for your DBT project, specifically the Google Kubernetes Engine (GKE) service cluster name</span>
+                                                </div>
+                                                <input id="cluster_name" type="text" class="form-input"
+                                                       name="cluster_name"
+                                                       required>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Cluster Zone
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The geographical zone where the Kubernetes cluster is located, specifically the GKE service cluster zone</span>
+                                                </div>
+                                                <input id="cluster_zone" type="text" class="form-input"
+                                                       name="cluster_zone"
+                                                       required>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Node Count
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The number of nodes allocated for the Kubernetes cluster, indicating the GKE service cluster node count</span>
+                                                </div>
+                                                <input id="cluster_node_count" type="text" class="form-input"
+                                                       name="cluster_node_count" required>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-label">Machines Type
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The type or configuration of machines used for the nodes in the Kubernetes cluster, denoting the GKE service cluster machine type</span>
+                                                </div>
+                                                <input id="cluster_machine_type" type="text" class="form-input"
+                                                       name="cluster_machine_type" required>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Machine Disk Type
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The type of persistent disk to be used for the nodes in the Kubernetes cluster, such as SSD, standard storage, or balanced storage</span>
+                                                </div>
+                                                <select name="cluster_machine_disk_type" class="form-input" required>
+                                                    <option value="pd-ssd">pd-ssd</option>
+                                                    <option value="pd-standard">pd-standard</option>
+                                                    <option value="pd-extreme">pd-extreme</option>
+                                                    <option value="pd-balanced">pd-balanced</option>
+                                                </select>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Network Private Nodes IP
+                                                Address
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The IP address range assigned to the private nodes in the Kubernetes cluster, representing the GKE service cluster private IP address range</span>
+                                                </div>
+                                                <input id="privatenodes_ip_range" type="text" class="form-input"
+                                                       name="privatenodes_ip_range" required>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Network Name
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The name of the network associated with the Kubernetes cluster, specifically the GKE service network name</span>
+                                                </div>
+                                                <input id="network" type="text" class="form-input" name="network"
+                                                       required>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">SubNetwork Name
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The name of the subnetwork associated with the Kubernetes cluster, denoting the GKE service subnetwork name</span>
+                                                </div>
+                                                <input id="subnetwork" type="text" class="form-input" name="subnetwork"
+                                                       required>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Network Services Secondary Address Name
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The secondary address name for network services in the Kubernetes cluster, representing the GKE service cluster network secondary service address name</span>
+                                                </div>
+                                                <input id="services_secondary_range_name" type="text" class="form-input"
+                                                       name="services_secondary_range_name" required>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Network Cluster Secondary Address Name
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The secondary address name for the cluster in the Kubernetes network, specifically the GKE service cluster network secondary cluster address name</span>
+                                                </div>
+                                                <input id="cluster_secondary_range_name" type="text" class="form-input"
+                                                       name="cluster_secondary_range_name" required>
+                                            </label>
+                                        </div>
+
+                                        <div class="checkbox-grid">
+                                            <label class="checkbox-wrapper">
+                                                <input type="checkbox" name="shared_vpc">
+                                                <span>Shared VPC</span>
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">A boolean value indicating whether the Kubernetes cluster network is on a Shared Virtual Private Cloud (VPC) (True) or not (False).</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-section">
+                                    <!-- Basic Information Section -->
+                                    <h3 class="section-title">Basic Information</h3>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label class="form-label">DBT Project Name
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The alphanumeric name assigned to your new dbt project</span>
+                                                </div>
+                                                <input id="shared_project_name" type="text" class="form-input"
+                                                       name="dbt_project_name" required>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Project Owner
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">A DBT Project Owner manages the development and maintenance of a DBT project, ensuring data quality, best practices, and alignment with organizational data goals</span>
+                                                </div>
+                                                <input type="text"
+                                                       class="form-input"
+                                                       name="dbt_project_owner"
+                                                       value={{ customer }}
+                                                       required>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Project Level
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">
+                                                        The environment or fabric in which the dataset belongs: this is an additional qualifier available on the identifier, to allow disambiguating datasets that live in Production environments from datasets that live in Non-production environments, such as Staging, QA, etc. Default as "Production"
+                                                    </span>
+                                                </div>
+                                                <select name="project_level" class="form-input js-choice-project-level" required>
+                                                    <option value="PROD">Production - Live environment</option>
+                                                    <option value="CORP">Corporation - High-level business use</option>
+                                                    <option value="NON_PROD">Non-Production - Testing environment</option>
+                                                    <option value="STG">Staging - Pre-live testing</option>
+                                                    <option value="PRE">Pre-production - Final testing</option>
+                                                    <option value="EI">Early-Integration - Initial testing</option>
+                                                    <option value="UAT">User Acceptance Testing</option>
+                                                    <option value="QA">Quality Assurance</option>
+                                                    <option value="TEST">Testing</option>
+                                                    <option value="DEV">Development</option>
+                                                </select>
+                                            </label>
+                                        </div>
+
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                const projectLevelSelect = document.querySelector('.js-choice-project-level');
+                                                if (projectLevelSelect) {
+                                                    new Choices(projectLevelSelect, {
+                                                        searchEnabled: false,
+                                                        itemSelectText: '',
+                                                        placeholder: true,
+                                                        shouldSort: false
+                                                    });
+                                                }
+                                            });
+                                        </script>
+
+                                    </div>
+                                </div>
+
+                                <!-- Airbyte Integration Section -->
+                                <div class="form-section">
+                                    <h3 class="section-title">Airbyte Integration</h3>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label class="form-label">Airbyte Workspace ID
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The identifier for the Airbyte workspace where the data integration pipelines are managed</span>
+                                                </div>
+                                                <input type="text"
+                                                       class="form-input"
+                                                       name="airbyte_workspace_id"
+                                                       value="{{ airbyte_workspace_id }}"
+                                                       readonly>
+                                            </label>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Source Connection
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The name assigned to the source connection within Airbyte, providing a human-readable label for the connection associated with the DBT project</span>
+                                                </div>
+                                                <select id="shared_airbyte_connection_name"
+                                                        name="airbyte_connection_name"
+                                                        class="form-input"
+                                                        onchange="updateSharedConnectionDetails()"
+                                                        multiple>
+                                                </select>
+                                            </label>
+                                        </div>
+
+                                        <script>
+
+                                            const sharedAirbyteConnectionSelectElement = document.getElementById('shared_airbyte_connection_name');
+
+                                            const airbyteConnectionsJson = JSON.parse('{{ airbyte_obj|safe }}');
+                                            const allChoices = Object.entries(airbyteConnectionsJson).map(([name, data]) => ({
+                                                value: name,
+                                                label: name
+                                            }));
+
+                                            const choices = new Choices(sharedAirbyteConnectionSelectElement, {
+                                                removeItemButton: true,
+                                                shouldSort: false,
+                                                placeholder: true,
+                                                searchEnabled: true,
+                                                searchChoices: false,
+                                                searchFloor: 1,
+                                                duplicateItemsAllowed: false,
+                                                placeholderValue: 'Select options',
+                                                choices: allChoices
+                                            });
+                                            document.querySelector('.choices').classList.add('inner');
+                                            document.querySelector('.choices').classList.add('input');
+                                            document.querySelector('.choices').classList.add('item');
+
+                                            function filterChoices() {
+                                                document.querySelector('.choices').classList.remove('error');
+                                                const selectedValues = Array.from(sharedAirbyteConnectionSelectElement.selectedOptions).map(opt => opt.value);
+
+                                                if (selectedValues.length === 0) {
+                                                    choices.clearChoices();
+                                                    choices.setChoices(allChoices, 'value', 'label', true);
+                                                    return;
+                                                }
+
+                                                const selectedType = airbyteConnectionsJson[selectedValues[0]]?.destination_name;
+
+                                                const filteredChoices = Object.entries(airbyteConnectionsJson)
+                                                    .filter(([name, data]) => data.destination_name === selectedType)
+                                                    .map(([name, data]) => ({
+                                                    value: name,
+                                                    label: name,
+                                                    selected: selectedValues.includes(name)
+                                                }));
+
+                                                choices.clearChoices();
+                                                choices.setChoices(filteredChoices, 'value', 'label', true);
+                                            }
+
+                                            sharedAirbyteConnectionSelectElement.addEventListener('change', filterChoices);
+
+                                            function updateSharedConnectionDetails() {
+                                                const SelectElement = document.getElementById('shared_airbyte_connection_name');
+                                                const selectedNames = Array.from(SelectElement.selectedOptions).map(option => option.value);
+                                                const selectedFirstName = selectedNames[0]
+                                                const connectionInfo = selectedNames.map(name => ({
+                                                    name,
+                                                    ...airbyteConnectionsJson[name]  // Spread connection properties
+                                                }));
+
+                                                const connections = selectedNames
+                                                    .map(name => airbyteConnectionsJson[name]?.connection)
+                                                    .filter(Boolean);
+
+                                                document.getElementById('shared_airbyte_connection_id').value = JSON.stringify(connections);
+                                                document.getElementById('shared_init_version').value = airbyteConnectionsJson[selectedFirstName]?.['destination_version'];
+                                                document.getElementById('shared_destination_type').value = airbyteConnectionsJson[selectedFirstName]?.['destination_type'];
+
+                                                const container = document.getElementById("shared_destination_name_container");
+                                                container.innerHTML = "";
+                                                if (selectedFirstName === "None - Basic dbt Labs Project Initialization") {
+                                                    const select = document.createElement("select");
+                                                    select.id = "shared_destination_name";
+                                                    select.name = "airbyte_destination_name";
+                                                    select.className = "form-input"
+
+                                                    const options = ["BigQuery", "Snowflake", "Redshift", "Fabric"];
+                                                    options.forEach(dest => {
+                                                        const opt = document.createElement("option");
+                                                        opt.value = dest;
+                                                        opt.textContent = dest;
+                                                        select.appendChild(opt);
+                                                    });
+
+                                                    container.appendChild(select);
+
+                                                    document.getElementById('shared_destination_type').value = 'bigquery';
+                                                    document.getElementById('bigquery_group').style.display = "block";
+
+                                                    document.querySelectorAll('#bigquery input').forEach(inp => {
+                                                        inp.required = true;
+                                                    });
+                                                }
+                                                else{
+
+                                                    const input = document.createElement("input");
+                                                    input.id = "shared_destination_name";
+                                                    input.type = "text";
+                                                    input.className = "form-input";
+                                                    input.name = "airbyte_destination_name";
+
+                                                    if (selectedFirstName && airbyteConnectionsJson[selectedFirstName]) {
+                                                        input.value = airbyteConnectionsJson[selectedFirstName]['destination_name'] || "";
+                                                    }
+                                                    input.readOnly = true;
+
+                                                    container.appendChild(input);
+
+                                                    const destinationType = airbyteConnectionsJson[selectedFirstName]?.destination_type || "";
+                                                    updateProfile(destinationType);
+                                                }
+                                            }
+
+                                            function updateProfile(destination_type) {
+                                                const groups = ['bigquery', 'snowflake', 'redshift', 'fabric'];
+
+                                                groups.forEach(group => {
+                                                    const groupElement = document.getElementById(`${group}_group`);
+                                                    const inputs = groupElement.querySelectorAll('input');
+
+                                                    const shouldShow = destination_type === group;
+
+                                                    groupElement.style.display = shouldShow ? 'block' : 'none';
+                                                    inputs.forEach(inp => inp.required = shouldShow);
+                                                });
+                                            }
+
+
+                                        </script>
+
+
+                                        <div class="form-group">
+                                            <label class="form-label">DWH Destination name
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">Name of the destination data warehouse (e.g., BigQuery, Snowflake, Redshift, Fabric).</span>
+                                                </div>
+                                                <div id="shared_destination_name_container"
+                                                     onchange="updateDestinationType()">
+                                                    <input id="shared_destination_name"
+                                                           type="text"
+                                                           class="form-input"
+                                                           name="airbyte_destination_name"
+                                                           readonly>
+                                                </div>
+                                                <div>
+                                                    <input id="shared_destination_type"
+                                                           type="text"
+                                                           class="form-input"
+                                                           name="data_warehouse_platform"
+                                                           readonly
+                                                           hidden="hidden">
+
+
+                                                    <input id="shared_airbyte_connection_id"
+                                                           type="text"
+                                                           class="form-input"
+                                                           name="airbyte_connection_id"
+                                                           value="None"
+                                                           readonly
+                                                           hidden="hidden">
+
+                                                    <input id="shared_init_version"
+                                                           type="text"
+                                                           class="form-input"
+                                                           name="init_version"
+                                                           readonly
+                                                           hidden="hidden">
+                                                </div>
+
+                                            </label>
+                                        </div>
+                                        <div class="checkbox-grid">
+                                            <label class="checkbox-wrapper">
+                                                <input type="checkbox" name="airbyte_replication_flag">
+                                                <span>Airbyte Replication</span>
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">A boolean value indicating is to create airbyte group of tasks Airflow DAG. Features are enabled (True) or not (False).</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section"
+                                     id='bigquery_group'
+                                     style="display:none;">
+                                    <h2 class="section-title">Data Warehouse Profile Params</h2>
+                                    <div class="form-grid">
+
+                                        <div id='gcp_project_id_group'>
+                                            <label class="form-label">Project ID
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The unique identifier associated with your Google Cloud Project, particularly relevant for BigQuery Data Warehouse</span>
+                                                </div>
+                                                <input type="text" class="form-input" name="gcp_project_id" id="gcp_project_id"
+                                                       placeholder="Google Cloud Project ID">
+                                            </label>
+                                        </div>
+
+                                        <div id='gcp_project_region_group'
+                                             class="form-group">
+                                            <label class="form-label">Project region
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The geographic location where your Google Cloud (BigQuery) resources are hosted, like europe-central2 or us-central1</span>
+                                                </div>
+                                                <input type="text" class="form-input" name="gcp_project_region" id="gcp_project_region" value="europe-central2"
+                                                       placeholder="Google Cloud Project region">
+                                            </label>
+                                        </div>
+
+                                        <div id='gcp_project_sa_email_group'
+                                             class="form-group">
+                                            <label class="form-label">SA email
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The Service Account email used to authenticate and authorize access to Google Cloud resources (example: dbt-sa@your-project-id.iam.gserviceaccount.com).</span>
+                                                </div>
+                                                <input type="text" class="form-input" name="gcp_project_sa_email" id="gcp_project_sa_email" value="dbt-sa@{{ gcp_project_id }}.iam.gserviceaccount.com "
+                                                       placeholder="Google Cloud Project email">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section"
+                                     id = 'snowflake_group'
+                                     style="display:none;">
+                                    <h2 class="section-title">Data Warehouse Profile Params</h2>
+                                    <div class="form-grid">
+
+                                        <div>
+                                            <label class="form-label">Database
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The database name where your data will be stored or queried from.</span>
+                                                </div>
+                                                <input type="text" class="form-input" name="snowflake_db" value="FASTBI" id="snowflake_db"
+                                                       placeholder="Snowflake Database">
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <label class="form-label">Schema
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">A logical grouping of tables within a database. Helps organize your data into different namespaces.</span>
+                                                </div>
+                                                <input type="text" class="form-input" name="snowflake_schema" value="PUBLIC" id="snowflake_schema"
+                                                       placeholder="Snowflake schema">
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <label class="form-label">Warehouse
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The compute resource that runs your SQL queries. Warehouses scale separately from the data storage</span>
+                                                </div>
+                                                <input type="text" class="form-input" name="snowflake_warehouse" value="COMPUTE_WH" id="snowflake_warehouse"
+                                                       placeholder="Snowflake warehouse">
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <label class="form-label">Role
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The permission set assigned to a user or service account that defines what actions they are allowed to perform in the database or cloud environment.</span>
+                                                </div>
+                                                <input type="text" class="form-input" name="snowflake_role" value="ACCOUNTADMIN" id="snowflake_role"
+                                                       placeholder="Snowflake role">
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="form-section"
+                                     id = 'redshift_group'
+                                     style="display:none;">
+                                    <h2 class="section-title">Data Warehouse Profile Params</h2>
+                                    <div class="form-grid">
+
+                                        <div>
+                                            <label class="form-label">Database
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The database name where your data will be stored.</span>
+                                                </div>
+                                                <input type="text" class="form-input" name="redshift_database" value="dev" id="redshift_database"
+                                                       placeholder="Redshift Database Name">
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <label class="form-label">Schema
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">A logical grouping of tables within a database. Helps organize your data into different namespaces.</span>
+                                                </div>
+                                                <input type="text" class="form-input" name="redshift_schema" value="public" id="redshift_schema"
+                                                       placeholder="Redshift schema">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-section"
+                                     id = 'fabric_group'
+                                     style="display:none;">
+                                    <h2 class="section-title">Data Warehouse Profile Params</h2>
+                                    <div class="form-grid">
+
+                                        <div>
+                                            <label class="form-label">Database
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The database name where your data will be stored.</span>
+                                                </div>
+                                                <input type="text" class="form-input" name="fabric_database" value="dev" id="fabric_database"
+                                                       placeholder="Fabric Database Name">
+                                            </label>
+                                        </div>
+
+                                        <div>
+                                            <label class="form-label">Schema
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">A logical grouping of tables within a database. Helps organize your data into different namespaces.</span>
+                                                </div>
+                                                <input type="text" class="form-input" name="fabric_schema" value="public" id="fabric_schema"
+                                                       placeholder="Fabric schema">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Platform Configuration Section -->
+                                <div class="form-section">
+                                    <h3 class="section-title">Platform Configuration</h3>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label class="form-label">Workload Platform
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">Specifies the platform used to manage workloads.</span>
+                                                </div>
+
+                                                <select name="workload_platform" class="form-input js-choice-platform">
+                                                    <option value="Airflow">Airflow</option>
+                                                    <option value="Composer">Composer</option>
+                                                </select>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <script>
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        const platformSelect = document.querySelector('.js-choice-platform');
+                                        if (platformSelect) {
+                                            new Choices(platformSelect, {
+                                                searchEnabled: false,
+                                                itemSelectText: '',
+                                                placeholder: true,
+                                                shouldSort: false
+                                            });
+                                        }
+                                    });
+                                </script>
+
+
+                                <!-- Features Section -->
+                                <div class="form-section">
+                                    <h3 class="section-title">Features & Capabilities</h3>
+                                    <div class="checkbox-grid">
+                                        <label class="checkbox-wrapper">
+                                            <input type="checkbox" name="data_quality_enabled">
+                                            <span>DBT Data Quality</span>
+                                            <div class="tooltip">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span class="tooltip-text">A boolean value indicating whether dbt data quality (Re_Date package) features are enabled (True) or not (False)</span>
+                                            </div>
+                                        </label>
+                                        <label class="checkbox-wrapper">
+                                            <input type="checkbox" name="dbt_seed_enabled">
+                                            <span>DBT Seed</span>
+                                            <div class="tooltip">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span class="tooltip-text">A boolean value indicating whether dbt seed functionality is enabled (True) or not (False)</span>
+                                            </div>
+                                        </label>
+                                        <label class="checkbox-wrapper">
+                                            <input type="checkbox" name="dbt_source_enabled">
+                                            <span>Source Freshness</span>
+                                            <div class="tooltip">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span class="tooltip-text">A boolean value indicating whether source dataset and source freshness verification is enabled (True) or not (False)</span>
+                                            </div>
+                                        </label>
+                                        <label class="checkbox-wrapper">
+                                            <input type="checkbox" name="dbt_snapshot_enabled">
+                                            <span>DBT Snapshot</span>
+                                            <div class="tooltip">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span class="tooltip-text">A boolean value indicating whether dbt snapshot functionality is enabled (True) or not (False)</span>
+                                            </div>
+                                        </label>
+                                        <label class="checkbox-wrapper">
+                                            <input type="checkbox" name="dbt_debug">
+                                            <span>Debug Mode</span>
+                                            <div class="tooltip">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span class="tooltip-text">A boolean value indicating whether dbt debug mode is enabled (True) or not (False)</span>
+                                            </div>
+                                        </label>
+                                        <label class="checkbox-wrapper">
+                                            <input type="checkbox"
+                                                   id="shared-datahub-enabled"
+                                                   onchange="toggleDatahubEnabled()"
+                                                   name="datahub_enabled">
+                                            <span>Data Catalog</span>
+                                            <div class="tooltip">
+                                                <i class="fas fa-info-circle"></i>
+                                                <span class="tooltip-text">A boolean value indicating whether data governance (DataHub) features are enabled (True) or not (False)</span>
+                                            </div>
+                                        </label>
+                                        <label>
+                                        </label>
+                                        <div id="shared-data-analysis-dbt-project-name" class="hidden">
+                                            <label class="checkbox-wrapper">
+                                                <input type="checkbox"
+                                                       name="data_analysis_dbt_project_name">
+                                                <span>Basic BI Data-Model</span>
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">A boolean value indicating whether data visualization (BI) features are enabled (True) or not (False)</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Repository Section -->
+                                <input type="hidden" id="git-provider" value="{{ git_provider|default('gitlab') }}">
+                                <div class="form-section">
+                                    <h3 class="section-title">Repository Configuration</h3>
+                                    <div class="form-grid">
+                                        <div class="form-group">
+                                            <label class="form-label">Branch Name
+                                                <div class="tooltip">
+                                                    <i class="fas fa-info-circle"></i>
+                                                    <span class="tooltip-text">The automatically generated branch name for the data model repository</span>
+                                                </div>
+                                                <input id="shared_branch_name"
+                                                       type="text"
+                                                       class="form-input"
+                                                       name="branch_name" readonly
+                                                       placeholder="Auto-generated branch name">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="info-alert">
+                                    <i class="fas fa-info-circle"></i>
+                                    <span>Project initialization may take up to 60 seconds. Please don't close your browser during this process.</span>
+                                </div>
+
+
+                                <div class="button-group">
+                                    <button id="cancel" type="button" class="btn btn-secondary">Cancel</button>
+                                    <button id="submit" type="submit" class="btn btn-primary">
+                                        <span class="button-text">Initialize Project</span>
+                                        <span class="loader"></span>
+                                    </button>
+                                    <span id="responseMessageShared" class="hidden"></span>
+                                </div>
+                            </form>
+                        </div>
+
+                        <script>
+                            const dbt_init_api_link = "{{ dbt_init_api_link }}"
+                            const dbt_init_api_key = "{{ dbt_init_api_key }}"
+                            const original_href = "{{ customer_repo_link }}";
+
+                            const responseMessage = document.getElementById('responseMessageShared');
+                            const submitBtn = document.getElementById('submit');
+                            const cancelBtn = document.getElementById('cancel');
+
+                            responseMessage.addEventListener('click', () => {
+                                if (responseMessage.classList.contains('u-form-send-error')) {
+                                    responseMessage.style.display = 'none';
+                                    submitBtn.className = 'btn btn-primary';
+                                    cancelBtn.className = 'btn btn-secondary';
+                                }
+                            });
+
+                            function updateProfile(destination_type) {
+                                const groups = ['bigquery', 'snowflake', 'redshift', 'fabric'];
+
+                                groups.forEach(group => {
+                                    const groupElement = document.getElementById(`${group}_group`);
+                                    const inputs = groupElement.querySelectorAll('input');
+
+                                    const shouldShow = destination_type === group;
+
+                                    groupElement.style.display = shouldShow ? 'block' : 'none';
+                                    inputs.forEach(inp => inp.required = shouldShow);
+                                });
+                            }
+
+                            function updateDestinationType() {
+                                const shareDestinationName = document.getElementById("shared_destination_name");
+                                const shareDestinationNameSelectedName = shareDestinationName.value;
+                                if (shareDestinationNameSelectedName == 'BigQuery') {
+                                    updateProfile('bigquery')
+                                    document.getElementById('shared_destination_type').value = 'bigquery';
+                                }
+                                else if (shareDestinationNameSelectedName == 'Snowflake') {
+                                    updateProfile('snowflake')
+                                    document.getElementById('shared_destination_type').value = 'snowflake';
+                                }
+                                else if (shareDestinationNameSelectedName == 'Redshift') {
+                                    updateProfile('redshift')
+                                    document.getElementById('shared_destination_type').value = 'redshift';
+                                }
+                                else if (shareDestinationNameSelectedName == 'Fabric') {
+                                    updateProfile('fabric')
+                                    document.getElementById('shared_destination_type').value = 'fabric';
+                                }
+                            }
+
+                            const projectIdInput = document.getElementById('gcp_project_id');
+                            const saEmailInput = document.getElementById('gcp_project_sa_email');
+                            projectIdInput.addEventListener('input', function() {
+                                const projectId = projectIdInput.value.trim();
+                                if (projectId) {
+                                    saEmailInput.value = `dbt-sa@${projectId}.iam.gserviceaccount.com`;
+                                } else {
+                                    saEmailInput.value = "";
+                                }
+                            });
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

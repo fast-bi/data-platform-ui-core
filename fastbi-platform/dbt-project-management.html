@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="BI, PLATFORM, DATA, ELT, DATA-MODEL, DATA-CATALOG, DATA-QUALITY">
+    <meta name="description"
+          content="Are you ready to revolutionize the way you handle Business Analysis and Data Modeling? Look no further. Fast BI Platform is your ultimate solution for DataOps...">
+    <title>Fast.BI - Platform Statistics</title>
+    <link rel="canonical" href="Business Analysis. FAST.">
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <script class="u-script" type="text/javascript" src="/templates/js/home.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/templates/js/dbt-project-management.js" defer=""></script>
+    <link rel="stylesheet" href="/templates/css/home.css" media="screen">
+    <link rel="stylesheet" href="/templates/css/dbt-project-management.css" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.0/jquery.nicescroll.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.18.0/js/md5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css"
+          media="screen">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+<div class="rj-layout">
+    <div class="rj-container-sections">
+        <div id="ContentLeft" class="rj-section rj-left">
+            <div class="rj-panel-vertical">
+                <div class="rj-panel-content">
+                    <header id="MenuVertical" class="rj-header rj-full-section-movil">
+                        <nav class="rj-navbar">
+                            <ul class="rj-list">
+                                <style>
+                                    .rj-navbar {
+                                        overflow-x: auto; /* Enable horizontal scrolling if needed */
+                                        white-space: nowrap; /* Prevent wrapping of menu items */
+                                    }
+
+                                    .scroll-down-btn {
+                                        display: none; /* Initially hide scroll-down button */
+                                        position: fixed;
+                                        bottom: 20px;
+                                        right: 20px;
+                                        z-index: 1000;
+                                    }
+                                </style>
+                                <li class="rj-item rj-img-logo">
+                                    <a href="/homepage"><img src="/images/logo_transparent.png" alt="Fast.BI"
+                                                             title="Fast.BI"></a>
+                                </li>
+
+                                <li id="home" class="rj-item">
+                                    <a class="rj-link" href="/homepage"><i class="fa-solid fa-house"></i> <b
+                                            class="rj-title-link"> Home</b></a>
+                                </li>
+
+                                <li class="line"></li>
+                                <li id="init" class="rj-item"><a class="rj-link" href="/dbt-init"><i
+                                        class="fa-regular fa-circle-play"></i> <b class="rj-title-link"> Data Project
+                                    Initialization</b></a></li>
+                                <li id="mnmgt" class="rj-item"><a class="rj-link" href="/dbt-management"><i
+                                        class="fa-solid fa-screwdriver-wrench"></i> <b class="rj-title-link"> Data
+                                    Project Management</b></a></li>
+                                <li id="stats" class="rj-item"><a class="rj-link" href="/stats"><i
+                                        class="fa-solid fa-chart-bar"></i> <b class="rj-title-link"> Data Plaform
+                                    Stats</b></a></li>
+                                <li class="line"></li>
+
+                                {% if airbyte_link %}
+                                <li id="airbyte" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ airbyte_link }}"
+                                       data-iframe-href="/data-replication"><i class="fa-regular fa-object-ungroup"></i>
+                                        <b class="rj-title-link"> Data Replication</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if ide_link %}
+                                <li id="ide" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ ide_link }}"
+                                       data-iframe-href="/data-manipulation"><i class="fa-solid fa-terminal"></i> <b
+                                            class="rj-title-link"> Data Modeling</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if airflow_link %}
+                                <li id="airflow" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ airflow_link }}"
+                                       data-iframe-href="/data-orchestration"><i class="fa-solid fa-timeline"></i> <b
+                                            class="rj-title-link"> Data Orchestration</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if data_quality_link %}
+                                <li id="redata" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ data_quality_link }}"
+                                       data-iframe-href="/data-quality"><i class="fa-solid fa-stethoscope"></i> <b
+                                            class="rj-title-link"> Data Quality</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if data_catalog_link %}
+                                <li id="dbtdocs" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ data_catalog_link }}"
+                                       data-iframe-href="/data-catalog"><i class="fa-solid fa-rectangle-list"></i> <b
+                                            class="rj-title-link"> Data Catalog</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if datahub_link %}
+                                <li id="datahub" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ datahub_link }}"
+                                       data-iframe-href="/data-governance"><i class="fa-solid fa-circle-info"></i> <b
+                                            class="rj-title-link"> Data Governance</b></a>
+                                </li>
+                                {% endif %}
+
+                                <li class="line"></li>
+
+                                {% if lightdash_link %}
+                                <li id="bi" class="rj-item">
+                                    <a class="rj-link" href="{{ lightdash_link }}"><i class="fa-solid fa-chart-pie"></i>
+                                        <b class="rj-title-link"> Data Analysis</b></a>
+                                </li>
+                                {% endif %}
+
+                                <li class="line"></li>
+
+                                {% if monitoring_link %}
+                                <li id="grafana" class="rj-item">
+                                    <a class="rj-link" href="{{ monitoring_link }}"><i
+                                            class="fa-solid fa-circle-exclamation"></i> <b class="rj-title-link"> Data
+                                        Platform Monitoring</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if s3_link %}
+                                <li id="objstr" class="rj-item">
+                                    <a class="rj-link" href="{{ s3_link }}"><i class="fa-regular fa-hard-drive"></i> <b
+                                            class="rj-title-link"> Data Platform Storage</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if cicd_workflow_link %}
+                                <li id="cicdworkflows" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ cicd_workflow_link }}"
+                                       data-iframe-href="/data-platform-workflows"><i
+                                            class="fa-solid fa-list-check"></i> <b class="rj-title-link"> Data Platform
+                                        Workflows</b></a>
+                                </li>
+                                {% endif %}
+
+                                <li class="line"></li>
+
+                                {% if gitlab_link %}
+                                <li id="git" class="rj-item">
+                                    <a class="rj-link" href="{{ gitlab_link }}"><i class="fa-brands fa-git-alt"></i> <b
+                                            class="rj-title-link" target="_blank"> Data Repository</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if bi_platform_bq_id %}
+                                <li id="gbq" class="rj-item">
+                                    <a class="rj-link"
+                                       href="https://console.cloud.google.com/bigquery?project={{ bi_platform_bq_id }}"><i
+                                            class="fa-solid fa-database"></i> <b class="rj-title-link" target="_blank">
+                                        BigQuery</b></a>
+                                </li>
+                                {% endif %}
+
+                                {% if bi_platform_gcp_id %}
+                                <li id="gcp" class="rj-item">
+                                    <a class="rj-link"
+                                       href="https://console.cloud.google.com/welcome?project={{ bi_platform_gcp_id }}"><i
+                                            class="fa-brands fa-google"></i> <b class="rj-title-link" target="_blank">
+                                        Google Cloud Platform</b></a>
+                                </li>
+                                {% endif %}
+
+                                <li class="line"></li>
+
+                                {% if wiki_link %}
+                                <li id="wiki" class="rj-item">
+                                    <a class="rj-link" href="{{ wiki_link }}"><i class="fa-brands fa-wikipedia-w"></i>
+                                        <b class="rj-title-link" target="_blank"> Platform Wiki</b></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <div id="ContentRight" class="rj-section rj-right">
+            <div class="rj-panel-horizontal">
+                <div class="rj-panel-content">
+                    <header id="MenuHorizontal" class="rj-header">
+                        <nav class="rj-navbar">
+                            <ul class="rj-list">
+                                <li class="rj-item rj-btn-toggle-menu rj-item-active">
+                                    <button type="button" id="BtnCollapseMenuPrincipal" class="rj-btn-toggle"
+                                            dom-event="CollapseMenuPrincipal" dom-target-collapsed="#ContentLeft"
+                                            dom-target-expanded="#ContentRight" dom-status="false">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                </li>
+                                <li class="rj-item">
+                                    <div class="rj-cnt-form-search">
+                                        <input type="text" class="rj-form-control" id="search-input" placeholder="Search...">
+                                        <button type="button" id="search-btn"><i class="fa fa-search"></i></button>
+                                        <div id="suggestions-container" style="display: none; border: 1px solid #ccc; max-height: 150px; overflow-y: auto;"></div>
+                                    </div>
+                                </li>
+                                <li class="rj-item">
+                                    <button type="button" id="BtnPanelNotifications" class="rj-link">
+                                        <span {% if welcome_message %} style="background-color: #c75252;" {% endif
+                                              %}></span>
+                                        <i class="fa-solid {% if welcome_message %}fa-bell{% else %}fa-bell-slash{% endif %}"
+                                           {% if welcome_message %} style="color: #c75252;" {% else %}
+                                           style="color: #6788ff;" {% endif %}></i>
+                                    </button>
+                                </li>
+                                <div class="notification-popup" id="notificationPopup">
+                                    <div class="card">
+                                        <div class="card-details">
+                                            <p class="text-title"><b>Nofitications</b></p>
+                                            <p class="text-body" id="notificationMessage">{{ welcome_message }}</p>
+                                        </div>
+                                        <button class="card-button" id="closeNotification">Close</button>
+                                    </div>
+                                </div>
+                                <script>
+                                    var message = '{{ welcome_message }}';
+                                </script>
+                                <li class="rj-item rj-img-avatar">
+                                    <button type="button" id="BtnPanelProfile" class="rj-btn-img"
+                                            dom-event="rj-togglefade-panel" dom-target="#PanelProfile"
+                                            dom-status="false">
+                                        <img id="userAvatar" src="" alt="User Avatar" title="User Avatar">
+                                    </button>
+                                    <script>
+                                        // Function to generate a random avatar based on the user's username
+                                        function generateAvatar(username) {
+                                            // Generate MD5 hash of the username
+                                            var hash = md5(username.toLowerCase());
+
+                                            // Construct the URL for the avatar image
+                                            var avatarUrl = 'https://www.gravatar.com/avatar/' + hash + '?d=identicon';
+
+                                            // Set the src attribute of the userAvatar element to the generated avatar URL
+                                            document.getElementById('userAvatar').src = avatarUrl;
+                                        }
+
+                                        // Example usage: Replace 'current_user.username' with the actual username
+                                    </script>
+                                    <script>
+                                        var currentUsername = "{{ user_email }}";
+                                        generateAvatar(currentUsername);
+                                    </script>
+                                </li>
+                            </ul>
+                        </nav>
+                    </header>
+                </div>
+            </div>
+            <div class="rj-panel-profile">
+                <div class="rj-panel-content">
+                    <header id="PanelProfile" class="rj-header rj-full-section-movil">
+                        <div class="rj-panel-caret"></div>
+                        <nav class="rj-navbar">
+                            <h2 class="rj-title-panel">Welcome, <b>{{ user_name }} !</b></h2>
+                            <div class="rj-profile-info">
+                                <div class="rj-cnt-row">
+                                    <div class="rj-cnt-cols">
+                                        <div class="rj-col-4">
+                                            <div class="rj-img-profile"><span><img id="userAvatar2" src=""
+                                                                                   alt=""></span></div>
+                                            <script>
+                                                // Function to generate a random avatar based on the user's username
+                                                function generateAvatar(username, id) {
+                                                    // Generate MD5 hash of the username
+                                                    var hash = md5(username.toLowerCase());
+
+                                                    // Construct the URL for the avatar image
+                                                    var avatarUrl = 'https://www.gravatar.com/avatar/' + hash + '?d=identicon';
+
+                                                    // Set the src attribute of the userAvatar element to the generated avatar URL
+                                                    document.getElementById(id).src = avatarUrl;
+                                                }
+
+                                                // Example usage: Replace 'current_user.username' with the actual username
+                                                var currentUsername = "{{ user_email }}";
+                                                generateAvatar(currentUsername, 'userAvatar2');
+                                            </script>
+                                        </div>
+                                        <div class="rj-col-8">
+                                            <div class="rj-list-info-text">
+                                                <p class="rj-info-text rj-black-thin"> Logged in with: <br> {{
+                                                    user_email }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rj-list-page-urls">
+                                <div class="rj-cnt-row">
+                                    <div class="rj-cnt-cols">
+                                        <div class="rj-col-12">
+                                            <a href="/profile" class="rj-link-control"><i class="fa fa-user"></i> My
+                                                Profile</a>
+                                            <a href="/configuration" class="rj-link-control"><i class="fa fa-cog"></i>
+                                                Site Configuration</a>
+                                            <a href="{{ url_for('logout') }}" class="rj-link-control"><i
+                                                    class="fa fa-sign-out-alt"></i> LogOut</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Platform Settings -->
+                            <div class="rj-list-page-urls" id="platform-settings-section">
+                                <div class="rj-cnt-row">
+                                    <div class="rj-cnt-cols">
+                                        <div class="rj-col-12">
+                                            <h3 class="rj-title-panel" id="platform-settings-title">Platform Settings</h3>
+                                            <a class="rj-link-control" dom-event="ChangeScreenColor" dom-mode="light">
+                                                <i class="fa-solid fa-moon"></i> 
+                                                <span id="theme-text">Dark Theme</span>
+                                                <i class="fa-solid fa-circle-info setting-info-icon" title="Change theme from light to dark and vice versa."></i>
+                                            </a>
+                                            <a class="rj-link-control" dom-event="Follow" dom-mode="off">
+                                                <i class="fa-solid fa-lock"></i> 
+                                                <span>Follow Mode</span>
+                                                <i class="fa-solid fa-circle-info setting-info-icon" title="Controls whether links open in a new tab. Locked = same tab, Unlocked = new tab."></i>
+                                            </a>
+                                            <a class="rj-link-control" dom-event="Iframe_enabled" dom-mode="disabled">
+                                                <i class="fa-solid fa-expand"></i> 
+                                                <span id="iframe-mode-text">Embed Services</span>
+                                                <i class="fa-solid fa-circle-info setting-info-icon" title="Controls whether links are from services or from the platform."></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                var followMode = "{{ follow_mode }}"; // Load follow mode state from Flask
+                                var iframeMode = "{{ iframe_mode }}"; // Load iframe mode state from Flask
+                                var lightDarkMode = "{{ light_dark_mode }}"; // Load light/dark mode state from Flask
+                                var user_id = "{{ user_id }}" || "";  // Load User ID from Flask
+                            </script>
+                        </nav>
+                    </header>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div class="card-project">
+                    <!-- Header Section -->
+                    <!--                    <div class="card-actions">-->
+                    <!--                        <button class="btn btn-primary">-->
+                    <!--                            <i class="fas fa-cog"></i>-->
+                    <!--                            Settings-->
+                    <!--                        </button>-->
+                    <!--                    </div>-->
+                    <div class="card-header">
+                        <h1 class="card-title">Project Management (Preview)</h1>
+                        <p class="card-description">List of All Available dbt Projects</p>
+                        
+                        <!-- Refresh Button -->
+                        <button id="refreshProjectsBtn" type="button" class="refresh-button">
+                            <i class="fas fa-sync-alt"></i>
+                            Refresh Projects
+                        </button>
+                    </div>
+
+
+                    <div class="card-content">
+                        <!-- Project Grid -->
+                        <div class="project-grid" id="project-grid">
+                            <!-- Dynamic project cards will be inserted here -->
+                        </div>
+                        <script>
+                            function decodeHtmlEntities(str) {
+                                const textArea = document.createElement('textarea');
+                                textArea.innerHTML = str;
+                                return textArea.value;
+                            }
+
+                            const dbtProjects = "{{ dbt_projects }}"
+                            const decoded = decodeHtmlEntities(dbtProjects).replace(/'/g, '"');
+                            const dbtProjectsJson = JSON.parse(decoded)
+
+                            const formatDateTime = (datetime) => {
+                                const date = new Date(datetime);
+                                return date.toISOString().split('T')[0] + ' ' + date.toTimeString().split(':').slice(0, 2).join(':');
+                            };
+
+                            const renderProjects = (projects) => {
+                                const grid = document.getElementById('project-grid');
+                                grid.innerHTML = "";
+
+                                const getBadgeClass = (badgeName, project) => {
+                                    if (project[badgeName] > 0) {
+                                        return "badge active";
+                                    }
+                                    else
+                                        return "badge";
+                                };
+
+                                projects.forEach((project) => {
+                                    const card = document.createElement('div');
+                                    card.classList.add('project-card');
+                                    card.setAttribute('data-project-id', project.project_name);
+                                    card.innerHTML = `
+                                                <div class="project-card-header">
+                                                    <div class="project-info">
+                                                        <div class="layout">
+                                                            <!-- Left side: Project name and metadata -->
+                                                            <div class="left-column">
+                                                                <h3 class="project-name">${project.project_name}</h3>
+                                                                <div class="project-metadata">
+                                                                    <div class="metadata-item">
+                                                                        <i class="fas fa-user" data-tooltip="This is the project owner"></i>
+                                                                        <span>${project.owner}</span>
+                                                                    </div>
+                                                                    <div class="metadata-item">
+                                                                        <i class="fas fa-calendar"></i>
+                                                                        <span>Created: ${formatDateTime(project.created_at)}</span>
+                                                                    </div>
+                                                                    <div class="metadata-item">
+                                                                        <i class="fas fa-clock"></i>
+                                                                        <span>Modified: ${formatDateTime(project.last_modified)}</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Right side: Project features -->
+                                                            <div class="project-features">
+                                                                <h5 class="features-header">Project Features</h5>
+                                                                <div class="metadata-item ${project.status["dbt_source"] === "True" ? "turn-on-item" : ""}">
+                                                                    <i class="fas fa-database"></i>
+                                                                    <span>DBT Source</span>
+                                                                </div>
+                                                                <div class="metadata-item ${project.status["dbt_airbyte_replication"] === "True" ? "turn-on-item" : ""}">
+                                                                    <i class="fas fa-sync"></i>
+                                                                    <span>Airbyte Replication</span>
+                                                                </div>
+                                                                <div class="metadata-item ${project.status["dbt_snapshot"] === "True" ? "turn-on-item" : ""}">
+                                                                    <i class="fas fa-camera"></i>
+                                                                    <span>DBT Snapshot</span>
+                                                                </div>
+                                                                <div class="metadata-item ${project.status["DEBUG"] === "True" ? "turn-on-item" : ""}">
+                                                                    <i class="fas fa-bug"></i>
+                                                                    <span>Debug</span>
+                                                                </div>
+                                                                <div class="metadata-item ${project.status["dbt_seed"] === "True" ? "turn-on-item" : ""}">
+                                                                    <i class="fas fa-seedling"></i>
+                                                                    <span>DBT Seed</span>
+                                                                </div>
+                                                                <div class="metadata-item ${project.status["dbt_governance_enabled"] === "True" ? "turn-on-item" : ""}">
+                                                                    <i class="fas fa-shield-alt"></i>
+                                                                    <span>Governance</span>
+                                                                </div>
+                                                                <div class="metadata-item ${project.status["data_quality_enabled"] === "True" ? "turn-on-item" : ""}">
+                                                                    <i class="fas fa-check-circle"></i>
+                                                                    <span>Data Quality</span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="project-options">
+                                                        <button class="btn-icon options-trigger">
+                                                            <i class="fas fa-ellipsis-v"></i>
+                                                        </button>
+                                                        <div class="options-menu">
+                                                            <button class="option-item" data-action="archive">
+                                                                <i class="fas fa-archive"></i>
+                                                                Archive Project
+                                                            </button>
+                                                            <button class="option-item" data-action="remove-project">
+                                                                <i class="fas fa-trash"></i>
+                                                                Remove Project
+                                                            </button>
+                                                            <button class="option-item" data-action="remove-data">
+                                                                <i class="fas fa-database"></i>
+                                                                Remove Only Data
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                    <div class="project-details">
+
+                                                    <div class="dbt-tasks status-badges">
+                                                        <span id="models_count" class="dbt-task models">
+                                                            <div class="count-wrapper">
+                                                                <i class="fa-brands fa-buromobelexperte"></i>
+                                                                <div id="${project.project_name}_loading_spinner_models_count" style="display: none;">
+                                                                    <div class="spinner"></div>
+                                                                </div>
+                                                                <d id="${project.project_name}_models_count"></d>
+                                                            </div>
+                                                        </span>
+                                                        <span class="dbt-task seeds">
+                                                            <div class="count-wrapper">
+                                                                <i class="fa-solid fa-circle-nodes"></i>
+                                                                <div id="${project.project_name}_loading_spinner_seeds_count" style="display: none;">
+                                                                    <div class="spinner"></div>
+                                                                </div>
+                                                                <d id="${project.project_name}_seeds_count"/>
+                                                            </div>
+                                                        </span>
+                                                        <span class="dbt-task snapshots">
+                                                            <div class="count-wrapper">
+                                                                <i class="fa-solid fa-clock"></i>
+                                                                <div id="${project.project_name}_loading_spinner_snapshots_count" style="display: none;">
+                                                                    <div class="spinner"></div>
+                                                                </div>
+                                                                <d id="${project.project_name}_snapshots_count"/>
+                                                            </div>
+                                                        </span>
+                                                        <span class="dbt-task sources">
+                                                            <div class="count-wrapper">
+                                                                <i class="fa-brands fa-sourcetree"></i>
+                                                                <div id="${project.project_name}_loading_spinner_sources_count" style="display: none;">
+                                                                    <div class="spinner"></div>
+                                                                </div>
+                                                                <d id="${project.project_name}_sources_count"/>
+                                                            </div>
+                                                        </span>
+                                                        <span class="dbt-task tests">
+                                                            <div class="count-wrapper">
+                                                                <i class="fa-solid fa-vial"></i>
+                                                                <div id="${project.project_name}_loading_spinner_tests_count" style="display: none;">
+                                                                    <div class="spinner"></div>
+                                                                </div>
+                                                                <d id="${project.project_name}_tests_count"/>
+                                                            </div>
+                                                        </span>
+                                                    </div>
+
+                                                    <!-- Project Information and Configuration -->
+                                                    <div class="layout">
+                                                      <div class="project-information">
+                                                        <div class="info-section left-panel">
+                                                            <h5 class="features-header">Information</h5>
+                                                            <div class="info-content">
+                                                            <table class="info-table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th>Parameter</th>
+                                                                        <th>Value</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="info-label">Project level:</td>
+                                                                        <td id="${project.project_name}_project_level" class="info-value"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="info-label">Airflow DAG:</td>
+                                                                        <td id="${project.project_name}_dag_id" class="info-value"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="info-label">Airflow DAG schedule interval:</td>
+                                                                        <td id="${project.project_name}_dag_schedule_interval" class="info-value"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="info-label">Airflow DAG tags:</td>
+                                                                        <td id="${project.project_name}_dag_tags" class="info-value"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="info-label">Airbyte workspace ID:</td>
+                                                                        <td id="${project.project_name}_airbyte_workspace_id" class="info-value"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="info-label">Airbyte Connection ID:</td>
+                                                                        <td id="${project.project_name}_airbyte_connection_id" class="info-value"></td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="info-label">Data quality URL:</td>
+                                                                        <td class="info-value">
+                                                                            <a id="${project.project_name}_data_quality_url" href="" target="_blank" rel="noopener noreferrer">
+                                                                                View Data Quality Report
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="info-label">DBT Docs URL:</td>
+                                                                        <td class="info-value">
+                                                                            <a id="${project.project_name}_dbt_docs_url" href="" target="_blank" rel="noopener noreferrer">
+                                                                                View DBT Docs
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td class="info-label">Repository URL:</td>
+                                                                        <td class="info-value">
+                                                                            <a id="${project.project_name}_repo_path" href="" target="_blank" rel="noopener noreferrer">
+                                                                                GIT Repo
+                                                                            </a>
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            </div>
+                                                        </div>
+                                                        <div></div>
+                                                        <div class="info-section right-panel">
+                                                            <h5 class="features-header">Configuration</h5>
+                                                            <div class="config-section">
+                                                                <div class="config-actions">
+                                                                    <button class="config-btn" data-action="rename">
+                                                                        <i id="${project.project_name}_logo_project_rename" class="fas fa-pen"></i>
+                                                                        <div id="${project.project_name}_loading_project_rename" style="display: none;">
+                                                                                <div class="spinner"></div>
+                                                                        </div>
+                                                                        <span id="${project.project_name}_response_project_rename_message" style="display: none;"></span>
+                                                                        <span id="${project.project_name}_button_project_rename" style="display: block;">
+                                                                            <span class="btn-title">Rename Project</span>
+                                                                            <span class="btn-desc">Change the project display name</span>
+                                                                        </span>
+                                                                    </button>
+
+                                                                    <button class="config-btn" data-action="change-owner">
+                                                                        <i id="${project.project_name}_logo_owner_change" class="fas fa-user-edit"></i>
+                                                                        <div id="${project.project_name}_loading_owner_change" style="display: none;">
+                                                                                <div class="spinner"></div>
+                                                                        </div>
+                                                                        <span id="${project.project_name}_response_owner_change_message" style="display: none;"></span>
+                                                                        <span id="${project.project_name}_button_owner_change" style="display: block;">
+                                                                            <span class="btn-title">Change Project Owner</span>
+                                                                            <span class="btn-desc">Update project ownership</span>
+                                                                        </span>
+                                                                    </button>
+
+                                                                    <button class="config-btn" data-action="refresh-schema">
+                                                                        <i id="${project.project_name}_logo_refresh_source" class="fas fa-sync-alt"></i>
+                                                                        <div id="${project.project_name}_loading_spinner_refresh_source" style="display: none;">
+                                                                                <div class="spinner"></div>
+                                                                        </div>
+                                                                        <span id="${project.project_name}_response_message" style="display: none;"></span>
+                                                                        <span id="${project.project_name}_button_refresh_source" style="display: block;">
+                                                                            <span class="btn-title">Refresh Project Structure</span>
+                                                                            <span class="btn-desc">Update project metadata</span>
+                                                                        </span>
+                                                                    </button>
+                                                                    <button class="config-btn" data-action="update-platform">
+                                                                        <i class="fas fa-cogs"></i>
+                                                                        <span>
+                                                                            <span class="btn-title">Update Project Config</span>
+                                                                            <span class="btn-desc">Modify project Data Connector Configuration</span>
+                                                                        </span>
+                                                                    </button>
+
+                                                                    <button class="config-btn" data-action="update-params">
+                                                                        <i class="fas fa-sliders-h"></i>
+                                                                        <span>
+                                                                            <span class="btn-title">Update Parameters</span>
+                                                                            <span class="btn-desc">Edit project worfklow parameters</span>
+                                                                        </span>
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                                    <button class="toggle-details">
+                                                        <i class="fas fa-chevron-down"></i>
+                                                    </button>
+                                                </div>`;
+
+                                    grid.appendChild(card);
+                                });
+                            };
+                            // Call the function to render projects
+                            renderProjects(dbtProjectsJson);
+
+                            const searchBtn = document.getElementById("search-btn");
+                            const searchInput = document.getElementById("search-input");
+
+                            const suggestionsContainer = document.getElementById("suggestions-container");
+
+
+                            function handleSearch() {
+                                const query = searchInput.value;
+
+                                const filteredProjects = dbtProjectsJson.filter(project =>
+                                project.project_name && project.project_name.includes(query)
+                                );
+
+                                renderProjects(filteredProjects);
+                                showSuggestions(filteredProjects);
+                            }
+
+                            function showSuggestions(filteredProjects) {
+                                suggestionsContainer.innerHTML = "";
+
+                                if (filteredProjects.length > 0) {
+                                    // Show the suggestions container
+                                    suggestionsContainer.style.display = "block";
+
+                                    filteredProjects.forEach(project => {
+                                        const suggestionItem = document.createElement("div");
+                                        suggestionItem.classList.add("suggestion-item");
+                                        suggestionItem.textContent = project.project_name;
+
+                                        suggestionItem.addEventListener("click", function() {
+                                            searchInput.value = project.project_name;
+                                            handleSearch();
+                                            suggestionsContainer.style.display = "none";
+                                        });
+
+                                        suggestionsContainer.appendChild(suggestionItem);
+                                    });
+                                } else {
+
+                                    suggestionsContainer.style.display = "none";
+                                }
+                            }
+
+                            searchInput.addEventListener("keydown", function(event) {
+                                if (event.key === "Enter") {
+                                    handleSearch();
+                                }
+                            });
+
+
+                            searchBtn.addEventListener("click", handleSearch);
+
+                            document.addEventListener("click", function(event) {
+                                if (!searchInput.contains(event.target)) {
+                                    suggestionsContainer.style.display = "none";
+                                }
+                            });
+
+                            searchInput.addEventListener("input", handleSearch);
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="paramsEditorModal" class="params-editor-modal">
+            <div class="params-editor-content">
+                <div class="params-editor-header">
+                    <div class="header-title">
+                        <h2>Edit Workflow Parameters</h2>
+                        <span class="project-name-editor" id="currentProjectName"></span>
+                    </div>
+                    <div class="params-editor-actions">
+                        <button class="btn-validate" id="validateParamsBtn">
+                            <i class="fas fa-check-circle"></i>
+                            Validate
+                        </button>
+                        <button class="btn-save" id="saveParamsBtn">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                        <button class="btn-close" id="closeParamsEditor">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="params-editor-body">
+                    <div class="editor-layout">
+                        <!-- Right Panel - YAML Editor -->
+                        <div class="editor-main">
+                            <div class="editor-toolbar">
+                                <div class="toolbar-actions">
+                                    <button class="toolbar-btn" id="formatBtn">
+                                        <i class="fas fa-format"></i>
+                                        Format
+                                    </button>
+                                    <button class="toolbar-btn" id="copyBtn">
+                                        <i class="fas fa-copy"></i>
+                                        Copy
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="editor-wrapper">
+                                <textarea id="yamlEditor" spellcheck="false"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="params-editor-footer">
+                    <div class="validation-status" id="validationStatus"></div>
+                    <div id="paramsEditorResponseMessage" class="response-message" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+        <div id="profileEditorModal" class="profile-editor-modal">
+            <div class="profile-editor-content">
+                <div class="profile-editor-header">
+                    <div class="header-title">
+                        <h2>Edit Project Profile Parameters</h2>
+                        <span class="project-name-editor" id="currentProfileProjectName"></span>
+                    </div>
+                    <div class="profile-editor-actions">
+                        <button class="btn-validate" id="validateProfileBtn">
+                            <i class="fas fa-check-circle"></i>
+                            Validate
+                        </button>
+                        <button class="btn-save" id="saveProfileBtn">
+                            <i class="fas fa-save"></i>
+                            Save Changes
+                        </button>
+                        <button class="btn-close" id="closeProfileEditor">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="profile-editor-body">
+                    <div class="editor-layout">
+                        <!-- Right Panel - YAML Editor -->
+                        <div class="editor-main">
+                            <div class="editor-toolbar">
+                                <div class="toolbar-actions">
+                                    <button class="toolbar-btn" id="formatProfileBtn">
+                                        <i class="fas fa-format"></i>
+                                        Format
+                                    </button>
+                                    <button class="toolbar-btn" id="copyProfileBtn">
+                                        <i class="fas fa-copy"></i>
+                                        Copy
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="editor-wrapper">
+                                <textarea id="profileYamlEditor" spellcheck="false"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="profile-editor-footer">
+                    <div class="validation-status" id="profileValidationStatus"></div>
+                    <div id="profileEditorResponseMessage" class="response-message" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const dbt_init_api_link = "{{ dbt_init_api_link }}"
+            const original_href = "{{ customer_repo_link }}";
+            const airbyte_link = "{{ airbyte_link }}";
+
+        </script>
+    </div>
+</div>
+<div id="toastNotification" class="toast-notification">
+    <i id="toastIcon" class="fas fa-info-circle"></i>
+    <div class="toast-content">
+        <p id="toastMessage"></p>
+    </div>
+    <button class="toast-close" onclick="closeToast()">
+        <i class="fas fa-times"></i>
+    </button>
+</div>
+<script>
+    // Store API key in a closure to prevent global access
+    const getApiConfig = (function() {
+        const apiKey = '{{ dbt_init_api_key }}';  // Use the environment variable name
+        return function() {
+            return {
+                getKey: function() { return apiKey; }
+            };
+        };
+    })();
+
+    function getApiKey() {
+        const config = getApiConfig();
+        return config.getKey();
+    }
+</script>
+</body>
+</html>

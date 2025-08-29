@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="BI, PLATFORM, DATA, ELT, DATA-MODEL, DATA-CATALOG, DATA-QUALITY">
+    <meta name="description"
+          content="Are you ready to revolutionize the way you handle Business Analysis and Data Modeling? Look no further. Fast BI Platform is your ultimate solution for DataOps...">
+    <title>Fast.BI - Platform Statistics</title>
+    <link rel="canonical" href="Business Analysis. FAST.">
+    <link rel="icon" href="/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon">
+    <script class="u-script" type="text/javascript" src="/templates/js/home.js" defer=""></script>
+    <link rel="stylesheet" href="/templates/css/home.css" media="screen">
+    <link rel="stylesheet" href="/templates/css/stats.css" media="screen">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.0/jquery.nicescroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.0/jquery.nicescroll.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment-with-locales.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+          media="screen">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/blueimp-md5/2.18.0/js/md5.min.js"></script>
+    <link rel="stylesheet" href="/templates/css/under_construction.css" media="screen">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css"
+          media="screen">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+</head>
+<body>
+<div class="rj-layout">
+    <div class="rj-container-sections">
+        <div id="ContentLeft" class="rj-section rj-left">
+            <div class="rj-panel-vertical">
+                <div class="rj-panel-content">
+                    <header id="MenuVertical" class="rj-header rj-full-section-movil">
+                        <nav class="rj-navbar">
+                            <ul class="rj-list">
+                                <style>
+                                    .rj-navbar {
+                                        overflow-x: auto; /* Enable horizontal scrolling if needed */
+                                        white-space: nowrap; /* Prevent wrapping of menu items */
+                                    }
+
+                                    .scroll-down-btn {
+                                        display: none; /* Initially hide scroll-down button */
+                                        position: fixed;
+                                        bottom: 20px;
+                                        right: 20px;
+                                        z-index: 1000;
+                                    }
+                                </style>
+                                <li class="rj-item rj-img-logo">
+                                    <a href="/homepage"><img src="/images/logo_transparent.png" alt="Fast.BI" title="Fast.BI"></a>
+                                </li>
+                                
+                                <li id="home" class="rj-item">
+                                    <a class="rj-link" href="/homepage"><i class="fa-solid fa-house"></i> <b class="rj-title-link"> Home</b></a>
+                                </li>
+                                
+                                <li class="line"></li>
+                                <li id="init" class="rj-item"><a class="rj-link"href="/dbt-init"><i class="fa-regular fa-circle-play"></i> <b class="rj-title-link"> Data Project Initialization</b></a></li>
+                                <li id="mnmgt" class="rj-item"><a class="rj-link"href="/dbt-management"><i class="fa-solid fa-screwdriver-wrench"></i> <b class="rj-title-link"> Data Project Management</b></a></li>
+                                <li id="stats" class="rj-item"><a class="rj-link"href="/stats"><i class="fa-solid fa-chart-bar"></i> <b class="rj-title-link"> Data Plaform Stats</b></a></li>
+                                <li class="line"></li>
+                                
+                                {% if airbyte_link %}
+                                <li id="airbyte" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ airbyte_link }}" data-iframe-href="/data-replication"><i class="fa-regular fa-object-ungroup"></i> <b class="rj-title-link"> Data Replication</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                {% if ide_link %}
+                                <li id="ide" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ ide_link }}" data-iframe-href="/data-manipulation"><i class="fa-solid fa-terminal"></i> <b class="rj-title-link"> Data Modeling</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                {% if airflow_link %}
+                                <li id="airflow" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ airflow_link }}" data-iframe-href="/data-orchestration"><i class="fa-solid fa-timeline"></i> <b class="rj-title-link"> Data Orchestration</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                {% if data_quality_link %}
+                                <li id="redata" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ data_quality_link }}" data-iframe-href="/data-quality"><i class="fa-solid fa-stethoscope"></i> <b class="rj-title-link"> Data Quality</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                {% if data_catalog_link %}
+                                <li id="dbtdocs" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ data_catalog_link }}" data-iframe-href="/data-catalog"><i class="fa-solid fa-rectangle-list"></i> <b class="rj-title-link"> Data Catalog</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                {% if datahub_link %}
+                                <li id="datahub" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ datahub_link }}" data-iframe-href="/data-governance"><i class="fa-solid fa-circle-info"></i> <b class="rj-title-link"> Data Governance</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                <li class="line"></li>
+                                
+                                {% if lightdash_link %}
+                                <li id="bi" class="rj-item">
+                                    <a class="rj-link" href="{{ lightdash_link }}"><i class="fa-solid fa-chart-pie"></i> <b class="rj-title-link"> Data Analysis</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                <li class="line"></li>
+                                
+                                {% if monitoring_link %}
+                                <li id="grafana" class="rj-item">
+                                    <a class="rj-link" href="{{ monitoring_link }}"><i class="fa-solid fa-circle-exclamation"></i> <b class="rj-title-link"> Data Platform Monitoring</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                {% if s3_link %}
+                                <li id="objstr" class="rj-item">
+                                    <a class="rj-link" href="{{ s3_link }}"><i class="fa-regular fa-hard-drive"></i> <b class="rj-title-link"> Data Platform Storage</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                {% if cicd_workflow_link %}
+                                <li id="cicdworkflows" class="rj-item">
+                                    <a class="rj-link" href="#" data-default-href="{{ cicd_workflow_link }}" data-iframe-href="/data-platform-workflows"><i class="fa-solid fa-list-check"></i> <b class="rj-title-link"> Data Platform Workflows</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                <li class="line"></li>
+                                
+                                {% if gitlab_link %}
+                                <li id="git" class="rj-item">
+                                    <a class="rj-link" href="{{ gitlab_link }}"><i class="fa-brands fa-git-alt"></i> <b class="rj-title-link" target="_blank"> Data Repository</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                {% if bi_platform_bq_id %}
+                                <li id="gbq" class="rj-item">
+                                    <a class="rj-link" href="https://console.cloud.google.com/bigquery?project={{ bi_platform_bq_id }}"><i class="fa-solid fa-database"></i> <b class="rj-title-link" target="_blank"> BigQuery</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                {% if bi_platform_gcp_id %}
+                                <li id="gcp" class="rj-item">
+                                    <a class="rj-link" href="https://console.cloud.google.com/welcome?project={{ bi_platform_gcp_id }}"><i class="fa-brands fa-google"></i> <b class="rj-title-link" target="_blank"> Google Cloud Platform</b></a>
+                                </li>
+                                {% endif %}
+                                
+                                <li class="line"></li>
+                                
+                                {% if wiki_link %}
+                                <li id="wiki" class="rj-item">
+                                    <a class="rj-link" href="{{ wiki_link }}"><i class="fa-brands fa-wikipedia-w"></i> <b class="rj-title-link" target="_blank"> Platform Wiki</b></a>
+                                </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <div id="ContentRight" class="rj-section rj-right">
+            <div class="rj-panel-horizontal">
+                <div class="rj-panel-content">
+                    <header id="MenuHorizontal" class="rj-header">
+                        <nav class="rj-navbar">
+                            <ul class="rj-list">
+                                <li class="rj-item rj-btn-toggle-menu rj-item-active">
+                                    <button type="button" id="BtnCollapseMenuPrincipal" class="rj-btn-toggle"
+                                            dom-event="CollapseMenuPrincipal" dom-target-collapsed="#ContentLeft"
+                                            dom-target-expanded="#ContentRight" dom-status="false">
+                                        <i class="fa fa-bars"></i>
+                                    </button>
+                                </li>
+                                <li class="rj-item">
+                                    <div class="rj-cnt-form-search">
+                                        <input type="text" class="rj-form-control" placeholder="Search...">
+                                        <button type="button"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </li>
+                                <li class="rj-item">
+                                    <button type="button" id="BtnPanelNotifications" class="rj-link">
+                                        <span {% if welcome_message %} style="background-color: #c75252;" {% endif
+                                              %}></span>
+                                        <i class="fa-solid {% if welcome_message %}fa-bell{% else %}fa-bell-slash{% endif %}"
+                                           {% if welcome_message %} style="color: #c75252;" {% else %}
+                                           style="color: #6788ff;" {% endif %}></i>
+                                    </button>
+                                </li>
+                                <div class="notification-popup" id="notificationPopup">
+                                    <div class="card">
+                                        <div class="card-details">
+                                            <p class="text-title"><b>Nofitications</b></p>
+                                            <p class="text-body" id="notificationMessage">{{ welcome_message }}</p>
+                                        </div>
+                                        <button class="card-button" id="closeNotification">Close</button>
+                                    </div>
+                                </div>
+                                <script>
+                                    var message = '{{ welcome_message }}';
+                                </script>
+                                <li class="rj-item rj-img-avatar">
+                                    <button type="button" id="BtnPanelProfile" class="rj-btn-img"
+                                            dom-event="rj-togglefade-panel" dom-target="#PanelProfile"
+                                            dom-status="false">
+                                        <img id="userAvatar" src="" alt="User Avatar" title="User Avatar">
+                                    </button>
+                                    <script>
+                                        // Function to generate a random avatar based on the user's username
+                                        function generateAvatar(username) {
+                                            // Generate MD5 hash of the username
+                                            var hash = md5(username.toLowerCase());
+
+                                            // Construct the URL for the avatar image
+                                            var avatarUrl = 'https://www.gravatar.com/avatar/' + hash + '?d=identicon';
+
+                                            // Set the src attribute of the userAvatar element to the generated avatar URL
+                                            document.getElementById('userAvatar').src = avatarUrl;
+                                        }
+
+                                        // Example usage: Replace 'current_user.username' with the actual username
+                                    </script>
+                                    <script>
+                                        var currentUsername = "{{ user_email }}";
+                                        generateAvatar(currentUsername);
+                                    </script>
+                                </li>
+                            </ul>
+                        </nav>
+                    </header>
+                </div>
+            </div>
+            <div class="rj-panel-profile">
+                <div class="rj-panel-content">
+                    <header id="PanelProfile" class="rj-header rj-full-section-movil">
+                        <div class="rj-panel-caret"></div>
+                        <nav class="rj-navbar">
+                            <h2 class="rj-title-panel">Welcome, <b>{{ user_name }} !</b></h2>
+                            <div class="rj-profile-info">
+                                <div class="rj-cnt-row">
+                                    <div class="rj-cnt-cols">
+                                        <div class="rj-col-4">
+                                            <div class="rj-img-profile"><span><img id="userAvatar2" src=""
+                                                                                   alt=""></span></div>
+                                            <script>
+                                                // Function to generate a random avatar based on the user's username
+                                                function generateAvatar(username, id) {
+                                                    // Generate MD5 hash of the username
+                                                    var hash = md5(username.toLowerCase());
+
+                                                    // Construct the URL for the avatar image
+                                                    var avatarUrl = 'https://www.gravatar.com/avatar/' + hash + '?d=identicon';
+
+                                                    // Set the src attribute of the userAvatar element to the generated avatar URL
+                                                    document.getElementById(id).src = avatarUrl;
+                                                }
+
+                                                // Example usage: Replace 'current_user.username' with the actual username
+                                                var currentUsername = "{{ user_email }}";
+                                                generateAvatar(currentUsername, 'userAvatar2');
+                                            </script>
+                                        </div>
+                                        <div class="rj-col-8">
+                                            <div class="rj-list-info-text">
+                                                <p class="rj-info-text rj-black-thin"> Logged in with: <br> {{
+                                                    user_email }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="rj-list-page-urls">
+                                <div class="rj-cnt-row">
+                                    <div class="rj-cnt-cols">
+                                        <div class="rj-col-12">
+                                            <a href="/profile" class="rj-link-control"><i class="fa fa-user"></i> My
+                                                Profile</a>
+                                            <a href="/configuration" class="rj-link-control"><i class="fa fa-cog"></i>
+                                                Site Configuration</a>
+                                            <a href="{{ url_for('logout') }}" class="rj-link-control"><i
+                                                    class="fa fa-sign-out-alt"></i> LogOut</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                <!-- Platform Settings -->
+                                <div class="rj-list-page-urls" id="platform-settings-section">
+                                    <div class="rj-cnt-row">
+                                        <div class="rj-cnt-cols">
+                                            <div class="rj-col-12">
+                                                <h3 class="rj-title-panel" id="platform-settings-title">Platform Settings</h3>
+                                                <a class="rj-link-control" dom-event="ChangeScreenColor" dom-mode="light">
+                                                    <i class="fa-solid fa-moon"></i> 
+                                                    <span id="theme-text">Dark Theme</span>
+                                                    <i class="fa-solid fa-circle-info setting-info-icon" title="Change theme from light to dark and vice versa."></i>
+                                                </a>
+                                                <a class="rj-link-control" dom-event="Follow" dom-mode="off">
+                                                    <i class="fa-solid fa-lock"></i> 
+                                                    <span>Follow Mode</span>
+                                                    <i class="fa-solid fa-circle-info setting-info-icon" title="Controls whether links open in a new tab. Locked = same tab, Unlocked = new tab."></i>
+                                                </a>
+                                                <a class="rj-link-control" dom-event="Iframe_enabled" dom-mode="disabled">
+                                                    <i class="fa-solid fa-expand"></i> 
+                                                    <span id="iframe-mode-text">Embed Services</span>
+                                                    <i class="fa-solid fa-circle-info setting-info-icon" title="Controls whether links are from services or from the platform."></i>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                  var followMode = "{{ follow_mode }}"; // Load follow mode state from Flask
+                                  var iframeMode = "{{ iframe_mode }}"; // Load iframe mode state from Flask
+                                  var lightDarkMode = "{{ light_dark_mode }}"; // Load light/dark mode state from Flask
+                                  var user_id = "{{ user_id }}" || "";  // Load User ID from Flask
+                                </script>
+                        </nav>
+                    </header>
+                </div>
+            </div>
+            <div class="container-fluid py-4">
+                <div class="row">
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="numbers">
+                                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Dataset count</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5 class="rj-title-module">
+                                            {{ dataset_count }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="numbers">
+                                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Table count</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5 class="rj-title-module">
+                                            {{ table_count }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="numbers">
+                                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Queries
+                                                executed</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5 class="rj-title-module">
+                                            {{ total_query_executed }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="numbers">
+                                            <p class="text-sm mb-0 text-capitalize font-weight-bold">AVG execution query
+                                                time</p>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5 class="rj-title-module">
+                                            {{avg_execution_time_seconds}}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                        <div class="card">
+                            <div class="card-body p-3">
+                                <div class="row">
+                                    <div class="col-8">
+                                        <div class="numbers">
+                                            <p class="text-sm mb-0 text-capitalize font-weight-bold">Failure rate
+                                                percentage</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-4">
+                                        <h5 class="rj-title-module">
+                                            {{ failure_rate_percentage }}
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="mt-4 col-lg-7">
+                        <div class="card z-index-2">
+                            <div class="card-header pb-0">
+                                <h6>6-Month Query Overview</h6>
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="chart">
+                                    <canvas id="query-cost-by-month-chart" class="chart-canvas" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 col-lg-7">
+                        <div class="card z-index-2">
+                            <div class="card-header pb-0">
+                                <h6>30-Days Query Overview</h6>
+
+                            </div>
+                            <div class="card-body p-3">
+                                <div class="chart">
+                                    <canvas id="query-cost-by-day" class="chart-canvas" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-header pb-0">
+                                <h6>Top Users by Query Cost</h6>
+                            </div>
+                            <div class="card-body px-0 pt-0 pb-2">
+                                <div class="table-responsive p-0">
+                                    <table class="table align-items-center justify-content-center mb-0"
+                                           id="projectTable">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-xxs font-weight-bolder">
+                                                User
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Total gb
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Total queries
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Avg query cost gb
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                First query date
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Last query date
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Total execution time(min)
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Avg execution time(sec)
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Success count
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Failure count
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tableBody">
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                const data = {{ total_cost_gb_by_users | safe }};
+
+                                                const tableBody = document.getElementById('tableBody');
+
+                                                data.forEach(item => {
+                                                    const row = document.createElement('tr');
+                                                    row.innerHTML = `
+                                        <td>
+                                            <div class="d-flex px-2">
+
+                                                <div class="my-auto">
+                                                    <h6 class="mb-0 text-sm">${item.user_email}</h6>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm mb-0">${item.total_cost_gb}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm mb-0">${item.total_queries}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm mb-0">${item.avg_query_cost_gb}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm mb-0">${item.first_query_date}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm mb-0">${item.last_query_date}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm mb-0">${item.total_execution_time_min}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm mb-0">${item.avg_execution_time_sec}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm mb-0">${item.success_count}</p>
+                                        </td>
+                                        <td>
+                                            <p class="text-sm mb-0">${item.failure_count}</p>
+                                        </td>
+                                        `;
+                                                    tableBody.appendChild(row);
+                                                });
+                                            });
+                                        </script>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card mb-4">
+                            <div class="card-header pb-0">
+                                <h6>Top dataset tables by Query Cost</h6>
+                            </div>
+                            <div class="card-body px-0 pt-0 pb-2">
+                                <div class="table-responsive p-0">
+                                    <table class="table align-items-center justify-content-center mb-0"
+                                           id="projectCostTable">
+                                        <thead>
+                                        <tr>
+                                            <th class="text-uppercase text-xxs font-weight-bolder">
+                                                Dataset
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder">
+                                                Table
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Total gb
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Total queries
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Avg query cost gb
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                First query date
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Last query date
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Total execution time(min)
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Avg execution time(sec)
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Success count
+                                            </th>
+                                            <th class="text-uppercase text-xxs font-weight-bolder ps-2">
+                                                Failure count
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="tableCostBody">
+                                        <script>
+                                            document.addEventListener('DOMContentLoaded', function () {
+                                                const data = {{ total_cost_gb_by_table | safe }};
+
+                                                const maxCost = Math.max(...data.map(item => item.total_cost_gb));
+                                                const minCost = Math.min(...data.map(item => item.total_cost_gb));
+
+                                                const tableBody = document.getElementById('tableCostBody');
+
+                                                function getHeatMapColor(value, min, max) {
+                                                    const normalizedValue = (value - min) / (max - min);
+                                                    const red = Math.floor(255 * normalizedValue);
+                                                    const green = Math.floor(255 * (1 - normalizedValue));
+                                                    const alpha = 0.3;  // Adjust this value for transparency (0 = fully transparent, 1 = fully opaque)
+
+                                                    return `rgba(${red}, ${green}, 0, ${alpha})`;
+                                                }
+
+                                                const groupedData = data.reduce((groups, item) => {
+                                                    if (!groups[item.dataset]) {
+                                                        groups[item.dataset] = [];
+                                                    }
+                                                    groups[item.dataset].push(item);
+                                                    return groups;
+                                                }, {});
+
+                                                Object.keys(groupedData).forEach(dataset => {
+                                                    const totalCost = groupedData[dataset].reduce((sum, item) => sum + item.total_cost_gb, 0);
+                                                    const totalQueries = groupedData[dataset].reduce((sum, item) => sum + item.total_queries, 0);
+                                                    const avgQueryCostGb = totalQueries > 0 ? (totalCost / totalQueries).toFixed(2) : '0.00';
+
+                                                    const firstQueryDate = groupedData[dataset].reduce((minDate, item) => {
+                                                        const currentItemDate = new Date(item.first_query_date);
+                                                        return currentItemDate < minDate ? currentItemDate : minDate;
+                                                    }, new Date(groupedData[dataset][0].first_query_date));
+                                                    const formattedFirstQueryDate = firstQueryDate.toISOString().split('T')[0];
+
+                                                    const lastQueryDate = groupedData[dataset].reduce((maxDate, item) => {
+                                                        const currentItemDate = new Date(item.last_query_date);
+                                                        return currentItemDate > maxDate ? currentItemDate : maxDate;
+                                                    }, new Date(groupedData[dataset][0].last_query_date));
+                                                    const formattedLastQueryDate = lastQueryDate.toISOString().split('T')[0];
+
+                                                    const totalExecutionTimeMin = groupedData[dataset].reduce((sum, item) => {
+                                                        return sum + item.total_execution_time_min;
+                                                    }, 0).toFixed(2);
+                                                    const avgExecutionTimeSec = totalQueries > 0 ? (totalExecutionTimeMin / totalQueries).toFixed(2) : '0.00';
+                                                    const totalSuccessCount = groupedData[dataset].reduce((sum, item) => sum + item.success_count, 0);
+                                                    const totalFailerCount = groupedData[dataset].reduce((sum, item) => sum + item.failure_count, 0);
+
+                                                    const headerRow = `
+                                                                    <tr>
+                                                                        <td colspan="2">
+                                                                            <button class="toggle-btn" data-dataset="${dataset}">+</button>
+                                                                            <strong>${dataset}</strong>
+                                                                        </td>
+                                                                        <td style="background-color: ${getHeatMapColor(totalCost, minCost, maxCost)}">
+                                                                            <strong>${totalCost.toFixed(2)}</strong>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${totalQueries}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${avgQueryCostGb}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${formattedFirstQueryDate}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${formattedLastQueryDate}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${totalExecutionTimeMin}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${avgExecutionTimeSec}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${totalSuccessCount}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${totalFailerCount}</p>
+                                                                        </td>
+                                                                    </tr>
+                                                                `;
+                                                    tableBody.insertAdjacentHTML('beforeend', headerRow);
+
+                                                    groupedData[dataset].forEach(item => {
+                                                        const costColor = getHeatMapColor(item.total_cost_gb, minCost, maxCost);
+                                                        const rowHTML = `
+                                                                    <tr class="table-row" data-dataset="${item.dataset}" style="display: none;">
+                                                                        <td>
+                                                                        </td>
+                                                                        <td>
+                                                                            <div class="d-flex px-2">
+                                                                                <div class="my-auto">
+                                                                                    <h6 class="mb-0 text-sm">${item.table}</h6> <!-- Table name displayed here -->
+                                                                                </div>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td style="background-color: ${costColor}">
+                                                                            <p class="text-sm mb-0">${item.total_cost_gb}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${item.total_queries}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${item.avg_query_cost_gb}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${item.first_query_date}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${item.last_query_date}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${item.total_execution_time_min}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${item.avg_execution_time_sec}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${item.success_count}</p>
+                                                                        </td>
+                                                                        <td>
+                                                                            <p class="text-sm mb-0">${item.failure_count}</p>
+                                                                        </td>
+                                                                    </tr>`;
+                                                        tableBody.insertAdjacentHTML('beforeend', rowHTML);
+                                                    });
+                                                });
+
+                                                document.querySelectorAll('.toggle-btn').forEach(button => {
+                                                    button.addEventListener('click', function () {
+                                                        const dataset = this.getAttribute('data-dataset');
+                                                        const rows = document.querySelectorAll(`tr[data-dataset="${dataset}"]`);
+                                                        rows.forEach(row => {
+                                                            row.style.display = row.style.display === 'none' ? '' : 'none';
+                                                        });
+
+                                                        this.textContent = this.textContent === '+' ? '-' : '+';
+                                                    });
+                                                });
+
+                                                document.querySelectorAll('.table-row').forEach(row => {
+                                                    row.style.display = 'none';
+                                                });
+                                            });
+                                        </script>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="./templates/js/chartjs.min.js"></script>
+
+<script>
+    function getLegendColor() {
+        const bodyClass = document.body.className;
+        return bodyClass.includes('rj-dark-mode') ? '#fff' : '#333';
+    }
+    var ctxM = document.getElementById("query-cost-by-month-chart").getContext("2d");
+
+    const dataM = {{ query_cost_by_months_chart | safe }};
+    const labelsM = dataM.map(item => item.month);
+    const queryCountM = dataM.map(item => item.query_count);
+    const totalCostGBM = dataM.map(item => item.total_cost_gb);
+
+    var gradientStrokeM1 = ctxM.createLinearGradient(0, 230, 0, 50);
+
+    gradientStrokeM1.addColorStop(1, 'rgba(203,12,159,0.2)');
+    gradientStrokeM1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStrokeM1.addColorStop(0, 'rgba(203,12,159,0)');
+
+    var gradientStrokeM2 = ctxM.createLinearGradient(0, 230, 0, 50);
+
+    gradientStrokeM2.addColorStop(1, 'rgba(20,23,39,0.2)');
+    gradientStrokeM2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStrokeM2.addColorStop(0, 'rgba(20,23,39,0)');
+
+    const ChartMonths = new Chart(ctxM, {
+        type: "line",
+        data: {
+            labels: labelsM,
+            datasets: [{
+                label: "Queries",
+                tension: 0.4,
+                borderWidth: 3,
+                pointRadius: 0,
+                borderColor: "#6788ff",
+                backgroundColor: gradientStrokeM1,
+                fill: true,
+                data: queryCountM,
+                yAxisID: 'y',
+                maxBarThickness: 6,
+                hoverBorderWidth: 4
+            },
+                {
+                    label: "Total GB",
+                    tension: 0.4,
+                    borderWidth: 3,
+                    pointRadius: 0,
+                    borderColor: "#575f9a",
+                    backgroundColor: gradientStrokeM2,
+                    fill: true,
+                    data: totalCostGBM,
+                    yAxisID: 'y1',
+                    maxBarThickness: 6,
+                    hoverBorderWidth: 4
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: getLegendColor(),
+                        font: {
+                            size: 15,
+                            family: "Roboto",
+                            style: 'normal',
+                        }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    titleFont: {
+                        family: "Roboto",
+                        size: 13,
+                    },
+                    bodyFont: {
+                        family: "Roboto",
+                        size: 12,
+                    },
+                    padding: 10,
+                },
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5],
+                        color: '#6788ff'
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#666',
+                        font: {
+                            size: 11,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    },
+                    title: {
+                        display: true,
+                        text: 'Number of Queries',
+                        color: '#6788ff',
+                        font: {
+                            family: 'Roboto',
+                            size: 13
+                        }
+                    }
+                },
+                y1: {
+                    type: 'linear',
+                    position: 'right',
+                    grid: {
+                        drawBorder: false,
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#666',
+                        font: {
+                            size: 11,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    },
+                    title: {
+                        display: true,
+                        text: 'Total GB',
+                        color: '#575f9a',
+                        font: {
+                            family: 'Roboto',
+                            size: 13
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        drawBorder: false,
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        display: true,
+                        color: '#666',
+                        padding: 20,
+                        font: {
+                            size: 13,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+            },
+        },
+    });
+
+    var ctxD = document.getElementById("query-cost-by-day").getContext("2d");
+
+    const dataD = {{ query_cost_by_days_chart | safe }};
+    const labelsD = dataD.map(item => item.day);
+    const queryCountD = dataD.map(item => item.query_count);
+    const totalCostGBD = dataD.map(item => item.total_cost_gb);
+
+    var gradientStrokeD1 = ctxD.createLinearGradient(0, 230, 0, 50);
+
+    gradientStrokeD1.addColorStop(1, 'rgba(203,12,159,0.2)');
+    gradientStrokeD1.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStrokeD1.addColorStop(0, 'rgba(203,12,159,0)');
+
+    var gradientStrokeD2 = ctxD.createLinearGradient(0, 230, 0, 50);
+
+    gradientStrokeD2.addColorStop(1, 'rgba(20,23,39,0.2)');
+    gradientStrokeD2.addColorStop(0.2, 'rgba(72,72,176,0.0)');
+    gradientStrokeD2.addColorStop(0, 'rgba(20,23,39,0)');
+
+
+    const Chart30Days =  new Chart(ctxD, {
+        type: "line",
+        data: {
+            labels: labelsD,
+            datasets: [{
+                label: "Queries",
+                tension: 0.4,
+                borderWidth: 3,
+                pointRadius: 0,
+                borderColor: "#6788ff",
+                backgroundColor: gradientStrokeD1,
+                fill: true,
+                data: queryCountD,
+                yAxisID: 'y',
+                maxBarThickness: 6,
+                hoverBorderWidth: 4
+            },
+                {
+                    label: "Total GB",
+                    tension: 0.4,
+                    borderWidth: 3,
+                    pointRadius: 0,
+                    borderColor: "#575f9a",
+                    backgroundColor: gradientStrokeD2,
+                    fill: true,
+                    data: totalCostGBD,
+                    yAxisID: 'y1',
+                    maxBarThickness: 6,
+                    hoverBorderWidth: 4
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: getLegendColor(),
+                        font: {
+                            size: 15,
+                            family: "Roboto",
+                            style: 'normal',
+                        }
+                    }
+                },
+                tooltip: {
+                    enabled: true,
+                    mode: 'index',
+                    intersect: false,
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleColor: '#fff',
+                    bodyColor: '#fff',
+                    titleFont: {
+                        size: 15,
+                        family: "Roboto",
+                        style: 'normal',
+                    },
+                    bodyFont: {
+                        size: 15,
+                        family: "Roboto",
+                        style: 'normal',
+                    },
+                    padding: 10,
+                },
+            },
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            scales: {
+                y: {
+                    type: 'linear',
+                    position: 'left',
+                    grid: {
+                        drawBorder: false,
+                        display: true,
+                        drawOnChartArea: true,
+                        drawTicks: false,
+                        borderDash: [5, 5],
+                        color: '#6788ff'
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#666',
+                        font: {
+                            size: 13,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    },
+                    title: {
+                        display: true,
+                        text: 'Number of Queries',
+                        color: '#6788ff',
+                        font: {
+                            family: 'Roboto',
+                            size: 13
+                        }
+                    }
+                },
+                y1: {
+                    type: 'linear',
+                    position: 'right',
+                    grid: {
+                        drawBorder: false,
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                    },
+                    ticks: {
+                        display: true,
+                        padding: 10,
+                        color: '#666',
+                        font: {
+                            size: 13,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    },
+                    title: {
+                        display: true,
+                        text: 'Total GB',
+                        color: '#575f9a',
+                        font: {
+                            family: 'Roboto',
+                            size: 13
+                        }
+                    }
+                },
+                x: {
+                    grid: {
+                        drawBorder: false,
+                        display: false,
+                        drawOnChartArea: false,
+                        drawTicks: false,
+                        borderDash: [5, 5]
+                    },
+                    ticks: {
+                        display: true,
+                        color: '#666',
+                        padding: 20,
+                        font: {
+                            size: 13,
+                            family: "Roboto",
+                            style: 'normal',
+                            lineHeight: 2
+                        },
+                    }
+                },
+            },
+        },
+    });
+
+    //Refresh charts colors based on light/dark mode
+    function updateLegendColor() {
+        Chart30Days.options.plugins.legend.labels.color = getLegendColor();
+        Chart30Days.update();
+
+        ChartMonths.options.plugins.legend.labels.color = getLegendColor();
+        ChartMonths.update();
+
+    }
+
+    const darkModeLink = document.querySelector('a[dom-event="ChangeScreenColor"]');
+    darkModeLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        document.body.classList.toggle('rj-dark-mode');
+        updateLegendColor();
+    });
+
+    const observer = new MutationObserver(mutations => {
+        mutations.forEach(mutation => {
+            if (mutation.attributeName === 'class') {
+                updateLegendColor();
+            }
+        });
+    });
+    observer.observe(document.body, { attributes: true });
+</script>
+</body>
+</html>

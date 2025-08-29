@@ -1,0 +1,31 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src=https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="/templates/css/500.css" media="screen">
+<script>
+  //Codepen doesn't play well with height media queries, so...
+var resizeContent = function(){
+  var windowHeight = $(window).height();
+  if(windowHeight < 550){
+    $('.error').addClass('responsive');
+  }
+  else{
+    $('.error').removeClass('responsive');
+  }
+}
+resizeContent();
+$(window).resize(function(){ resizeContent() });
+</script>
+<body class="loading">
+  <div class="container-fluid error">
+    <div class="row">
+      <div class="col-xs-12 error-content text-center">
+        <i class="fa fa-bug" aria-hidden="true"></i>
+        <h1>500</h1>
+        <p>Oops! That's a bug</p>
+        <span>Please send us a ticket at <a href="mailto:support@fast.bi">support@fast.bi</a></span>
+      </div>
+    </div>
+  </div>
+</body>

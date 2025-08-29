@@ -1,0 +1,127 @@
+iframe {
+  width: 100% !important;
+  height: 100vh !important; /* Adjust the height to accommodate the footer */
+  border: none !important;
+  overflow: auto !important; /* Allow scrolling within the iframe if necessary */
+}
+
+.float-nav {
+    position: absolute !important;
+    bottom: 10px !important;
+    right: 25px !important;
+    z-index: 2 !important;
+  }
+  .float-nav > a.menu-btn {
+    text-decoration: none !important;
+    display: block !important;
+    background-color: #55697d75 !important;
+    color: white !important;
+    padding: 17px 19px 12px 19px !important;
+    text-align: center !important;
+    box-shadow: 2px 2px 8px #777 !important;
+    border-radius: 300px !important;
+  }
+  .float-nav > a.menu-btn.active {
+    transition: background-color 250ms linear !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+  .float-nav > a.menu-btn.active > ul > li.line:nth-child(1) {
+    border-width: 2px !important;
+    -moz-transform: rotate(45deg) translate(4px, 6px) !important;
+    -ms-transform: rotate(45deg) translate(4px, 6px) !important;
+    -webkit-transform: rotate(45deg) translate(4px, 6px) !important;
+    transform: rotate(45deg) translate(4px, 6px) !important;
+  }
+  .float-nav > a.menu-btn.active > ul > li.line:nth-child(2) {
+    visibility: hidden !important;
+  }
+  .float-nav > a.menu-btn.active > ul > li.line:nth-child(3) {
+    border-width: 2px !important;
+    -moz-transform: rotate(-45deg) translate(8px, -10px) !important;
+    -ms-transform: rotate(-45deg) translate(8px, -10px) !important;
+    -webkit-transform: rotate(-45deg) translate(8px, -10px) !important;
+    transform: rotate(-45deg) translate(8px, -10px) !important;
+  }
+  .float-nav > a.menu-btn > ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .float-nav > a.menu-btn > ul > li.line {
+    border: 1px solid white !important;
+    width: 100% !important;
+    margin-bottom: 7px !important;
+    -moz-transition-duration: 0.1s !important;
+    -o-transition-duration: 0.1s !important;
+    -webkit-transition-duration: 0.1s !important;
+    transition-duration: 0.1s !important;
+  }
+  .float-nav > a.menu-btn > .menu-txt {
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 12px !important;
+    font-family: sans-serif !important;
+  }
+  
+  .main-nav {
+    display: none !important;
+    opacity: 0 !important;
+    font-family: sans-serif !important;
+    position: absolute !important;
+    bottom: 10px !important;
+    right: 30px !important;
+    transition: opacity 250ms !important;
+  }
+  .main-nav.active {
+    display: block !important;
+    opacity: 1 !important;
+    transition: opacity 250ms !important;
+  }
+  .main-nav > ul {
+    width: 100% !important;
+    display: block !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background-color: #55697dc4 !important;
+    box-shadow: 2px 2px 8px #777 !important;
+    border-radius: 3px 3px 33.5px 3px !important;
+  }
+  .main-nav > ul > li > a {
+    text-decoration: none !important;
+    display: block !important;
+    font-weight: 200 !important;
+    padding: 5px 70px 15px 10px !important;
+    color: white !important;
+  }
+  .main-nav > ul > li > a:hover {
+    font-weight: 400 !important;
+    color: #3b4e613d !important;
+  }
+
+  /* Position the Fast.BI icon */
+.fastbi-icon {
+  position: absolute !important;
+  top: 10px !important; /* Adjust as needed */
+  right: 10px !important; /* Adjust as needed */
+  width: 85px !important; /* Adjust as needed */
+  height: 85px !important; /* Adjust as needed */
+}
+
+.fastbi-icon {
+  filter: brightness(0) invert(1) !important;
+}
+
+/* Define CSS classes for different scale values */
+.scale-small {
+  transform: scale(0.75) !important; /* Adjust the scale value as needed */
+}
+
+.scale-medium {
+  transform: scale(1) !important; /* Default scale, no transformation */
+}
+
+.scale-large {
+  transform: scale(1.25) !important; /* Adjust the scale value as needed */
+}

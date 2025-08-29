@@ -1,0 +1,11 @@
+cm.yaml
+pre-deployment.yaml
+./archive/
+./templates/
+.*/
+*.json
+!spec/*.json
+__pycache__
+pre_deployment.yaml
+.help
+client_secrets.json

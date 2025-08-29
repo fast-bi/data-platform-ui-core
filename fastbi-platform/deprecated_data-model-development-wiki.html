@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;" lang="en-LT"><head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <title>Data Model Development Wiki</title>
+    <link rel="stylesheet" href="/templates/css/nicepage.css" media="screen">
+<link rel="stylesheet" href="/templates/css/data-model-development-wiki.css" media="screen">
+    <script class="u-script" type="text/javascript" src="/templates/js/jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="/templates/js/nicepage.js" defer=""></script>
+    <link rel="icon" href="/images/favicon.png">
+    <link id="u-theme-google-font" rel="stylesheet" href="/templates/css/fonts.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" media="screen">
+    <script type="application/ld+json">{
+		"@context": "http://schema.org",
+		"@type": "Organization",
+		"name": "Bi-Platform",
+		"logo": "/images/twitter_header_photo_2.png"
+}</script>
+    <meta name="theme-color" content="#232b79">
+    <meta property="og:title" content="Data Model Development Wiki">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+  <meta data-intl-tel-input-cdn-path="intlTelInput/"></head>
+  <body data-path-to-root="/" data-include-products="false" class="u-body u-xl-mode" data-lang="en">
+    <section class="u-carousel u-slide u-block-0515-1" id="carousel-0d5a" data-interval="5000" data-u-ride="carousel">
+      <ol class="u-absolute-hcenter u-carousel-indicators u-block-0515-2">
+        <li data-u-target="#carousel-0d5a" class="u-active u-grey-30" data-u-slide-to="0"></li>
+      </ol>
+      <div class="u-carousel-inner" role="listbox">
+        <div class="u-active u-align-center u-carousel-item u-clearfix u-image u-shading u-section-1-1" src="" data-image-width="1520" data-image-height="800">
+          <div class="u-clearfix u-sheet u-sheet-1">
+            <h1 class="u-text u-text-default u-text-white u-title u-text-1"> Data Model Development</h1>
+            <p class="u-large-text u-text u-text-variant u-text-2"> Getting Started with Fast.BI Platform</p>
+          </div>
+        </div>
+      </div>
+      <a class="u-absolute-vcenter u-carousel-control u-carousel-control-prev u-hidden u-text-grey-30 u-block-0515-3" href="#carousel-0d5a" role="button" data-u-slide="prev">
+        <span aria-hidden="true">
+          <svg class="u-svg-link" viewBox="0 0 477.175 477.175"><path d="M145.188,238.575l215.5-215.5c5.3-5.3,5.3-13.8,0-19.1s-13.8-5.3-19.1,0l-225.1,225.1c-5.3,5.3-5.3,13.8,0,19.1l225.1,225
+                    c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4c5.3-5.3,5.3-13.8,0-19.1L145.188,238.575z"></path></svg>
+        </span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="u-absolute-vcenter u-carousel-control u-carousel-control-next u-hidden u-text-grey-30 u-block-0515-4" href="#carousel-0d5a" role="button" data-u-slide="next">
+        <span aria-hidden="true">
+          <svg class="u-svg-link" viewBox="0 0 477.175 477.175"><path d="M360.731,229.075l-225.1-225.1c-5.3-5.3-13.8-5.3-19.1,0s-5.3,13.8,0,19.1l215.5,215.5l-215.5,215.5
+                    c-5.3,5.3-5.3,13.8,0,19.1c2.6,2.6,6.1,4,9.5,4c3.4,0,6.9-1.3,9.5-4l225.1-225.1C365.931,242.875,365.931,234.275,360.731,229.075z"></path></svg>
+        </span>
+        <span class="sr-only">Next</span>
+      </a>
+    </section>
+    <section class="u-align-left u-clearfix u-section-2" id="sec-2124">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h2 style="text-align: left;">
+            <span style="line-height: 2.0;">Services:</span>
+          </h2>
+          <p>Before starting, ensure you have your cloud workspace IDE or your local environment set up with the required services:</p>
+          <p id="isPasted">Required Services:</p>
+          <ol id="isPasted" style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+              <p>1. <span style="font-weight: 700;">dbt-bigquery/dbt-snowflake:</span> The dbt engine for working with BigQuery/Snowflake data models and transformation environments.
+              </p>
+              <ul style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">Package BigQuery: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="https://pypi.org/project/dbt-bigquery/" rel="noopener noreferrer" target="_blank">Package Link</a>]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">Package Snowflake: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2" href="https://pypi.org/project/dbt-snowflake/" rel="noopener noreferrer" target="_blank">Package Link</a>]
+                </li>
+              </ul>
+            </li>
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+              <p>2 <span style="font-weight: 700;">Lightdash:</span> The Lightdash CLI for generating metadata for dbt model YAML files.
+              </p>
+              <ul style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">Lightdash CLI: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-3" href="https://docs.lightdash.com/guides/cli/how-to-install-the-lightdash-cli" rel="noopener noreferrer" target="_blank">CLI Link</a>]
+                </li>
+              </ul>
+            </li>
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+              <p>3. <span style="font-weight: 700;">DataHub:&nbsp;</span>Used for generating and testing DataCatalog/Governance uploads.
+              </p>
+              <ul style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">DataHub CLI: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-4" href="https://datahubproject.io/docs/cli/" rel="noopener noreferrer" target="_blank">CLI Link</a>]
+                </li>
+              </ul>
+            </li>
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+              <p>4. <span style="font-weight: 700;">ReData:</span> For generating and testing Data Quality outputs.
+              </p>
+              <ul style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">ReData CLI: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="https://docs.getre.io/latest/docs/re_data/getting_started/installation/for_dbt_users#installing-re_data-python-package" rel="noopener noreferrer" target="_blank">CLI Link</a>]
+                </li>
+              </ul>
+            </li>
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+              <p>5. <span style="font-weight: 700;">YAMLLint:&nbsp;</span>To check and fix dbt project YAML file formatting.
+              </p>
+              <ul style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">YAMLLint Service: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-6" href="https://yamllint.readthedocs.io/en/stable/quickstart.html#installing-yamllint" rel="noopener noreferrer" target="_blank">Service Link</a>]
+                </li>
+              </ul>
+            </li>
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+              <p>6. <span style="font-weight: 700;">SQLFluff:</span> For checking, testing, and fixing dbt project SQL model file formatting.
+              </p>
+              <ul style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">SQLFluff Service: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-7" href="https://pypi.org/project/sqlfluff/ or https://sqlfluff.com/" rel="noopener noreferrer" target="_blank">Service Link</a>]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">SQLFluff dbt templater service: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-8" href="https://pypi.org/project/sqlfluff-templater-dbt/" rel="noopener noreferrer" target="_blank">Templater Link</a>]
+                </li>
+              </ul>
+            </li>
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+              <p>7. <span style="font-weight: 700;">GIT:</span> To manage your code states and versioning.
+              </p>
+              <ul style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">Git Service: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-9" href="https://git-scm.com/downloads" rel="noopener noreferrer" target="_blank">Service Link</a>]
+                </li>
+              </ul>
+            </li>
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+              <p>8.<span style="font-weight: 700;">&nbsp;Google Cloud SDK:</span> Required if using BigQuery.
+              </p>
+              <ul style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">gcloud SDK: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-10" href="https://cloud.google.com/sdk/docs/install" rel="noopener noreferrer" target="_blank">SDK Link</a>]
+                </li>
+              </ul>
+            </li>
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+              <p>9. <span style="font-weight: 700;">SnowFlake:</span> Required if using SnowFlake.
+              </p>
+              <ul style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">snowsql SDK: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-11" href="https://docs.snowflake.com/en/user-guide/snowsql-install-config" rel="noopener noreferrer" target="_blank">SDK Link</a>]
+                </li>
+              </ul>
+            </li>
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+              <p>10. <span style="font-weight: 700;">dbt-dry-run:</span> Required for Bigquery dry run.
+              </p>
+              <ul style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">Package dbt-dry-run: [<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-12" href="https://pypi.org/project/dbt-dry-run/0.6.8/" rel="noopener noreferrer" target="_blank">Package Link</a>]
+                </li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-left u-clearfix u-section-3" id="sec-6fae">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: left;">Visual Studio Code UI:</h1>
+          <p id="isPasted">2. If you have followed the "<a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="/vscode-coder-ide-wiki.html">Visual Studio Code - How to Start</a>" page, you should already have cloned the data model repository and your dbt projects. Let's get started.
+          </p>
+          <p>Starting with a freshly cloned repository, right-click on the folder named dbt-data-model. In the open window, select "Open in Integrated Terminal."</p>
+          <p>
+            <img src="/images/image9.png" width="570" align="center" style="width: 851px;" class="fr-dii fr-fic">
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-left u-clearfix u-section-4" id="sec-bdcf">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: left;">Creating a New Branch:</h1>
+          <p style="text-align: left;">3. Before making any changes to the main branch of your dbt-data-model repository, let's create your own branch. For example, if you're starting a new data model, your branch name could be DD_0001, where DD stands for Data Deployment and 0001 is a unique identifier. It's best to use an alphanumeric format for branch names. Run the following command in the open terminal:<br>
+            <br>
+            <span style="font-weight: 700; font-style: italic;">Command: git checkout -b "DD_0001"</span>
+          </p>
+          <p style="text-align: left;">
+            <img src="/images/image18.png" width="570" align="center" style="width: 756px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p style="text-align: left;">You've successfully created a new branch named DD_0001. Now, set an environment variable with the command:<br>
+            <br>
+            <span style="font-weight: 700; font-style: italic;">Command: export GIT_BRANCH=DD_0001</span>
+          </p>
+          <p style="text-align: left;">
+            <img src="/images/image19.png" width="570" align="center" style="width: 750px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p style="text-align: left;">This variable will be used for your end-to-end tests.</p>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-left u-clearfix u-section-5" id="sec-18d5">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: left;">Creating a New DBT Project:</h1>
+          <p id="isPasted">4. If you're starting with a new dbt project, follow these steps to set up the project. Skip this step if you're already familiar with the dbt folder structure.</p>
+          <p>4.1. Initiate a new dbt project with the following command. We will modify this project later. Running this command will create a new folder:</p>
+          <p>
+            <span style="font-weight: 700; font-style: italic;">Command: dbt init -s</span>
+          </p>
+          <p>Provide your new dbt project name; for example: tsb_example_dbt_elt.</p>
+          <p>
+            <img src="/images/image11.png" width="570" align="center" style="width: 570px;" class="fr-dii fr-fic">
+          </p>
+          <p id="isPasted">4.2. Your new dbt project is currently empty. To prepare it for running dbt transformations in the Fast.BI platform, ensure your dbt project folder contains all the necessary files listed here:</p>
+          <ul style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                </li><li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">analyses - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="https://docs.getdbt.com/docs/build/analyses" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">macros - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2" href="https://docs.getdbt.com/docs/build/jinja-macros#macros " rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">models - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-3" href="https://docs.getdbt.com/docs/build/models" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">seeds - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-4" href="https://docs.getdbt.com/docs/build/seeds" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">snapshots - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-5" href="https://docs.getdbt.com/docs/build/snapshots" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">tests - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-6" href="https://docs.getdbt.com/docs/build/tests" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+              </ul>
+            
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+                </li><li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">.gitignore - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-7" href="https://git-scm.com/docs/gitignore" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">.sqlfluff - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-8" href="https://docs.sqlfluff.com/en/stable/configuration.html" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">.sqlfluffignore - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-9" href="https://docs.sqlfluff.com/en/stable/configuration.html" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">dbt_project.yml - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-10" href="https://docs.getdbt.com/reference/dbt_project.yml" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">packages.yml - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-11" href="https://docs.getdbt.com/docs/build/packages " rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">profiles.yml - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-12" href="https://docs.getdbt.com/docs/core/connect-data-platform/profiles.yml" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">README.md - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-13" href="https://about.gitlab.com/handbook/markdown-guide/" rel="noopener noreferrer" target="_blank">Link</a> ] or [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-14" href="https://www.makeareadme.com/" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">yamllint-config.yaml - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-15" href="https://yamllint.readthedocs.io/en/stable/configuration.html" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+                <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">dbt_airflow_variables.yml - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-16" href="https://gitlab.fast.bi/wiki/dbt_airflow_variables.git" rel="noopener noreferrer" target="_blank">Link</a> ]
+                </li>
+              
+            
+          
+          <p>
+            <img src="/images/image12.png" width="570" align="center" style="width: 405px;" class="fr-dii fr-fic">
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-left u-clearfix u-section-6" id="sec-e5ed">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: left;">Configuring main DBT Project Files</h1>
+          <p id="isPasted">5. Let's configure the main files for test our first dbt flow.<br>5.1. <span style="font-weight: 700;">profiles.yml - Connection to BigQuery:</span>
+          </p>
+          <p>
+            <img src="/images/image20.png" width="570" align="center" style="width: 578px;" class="fr-dib fr-fic fr-fil">5.2 <span style="font-weight: 700;">dbt_project.yml - Verify that the profile name matches the name in profile.yml line 1.</span>
+          </p>
+          <p>
+            <img src="/images/image35.png" width="570" align="center" style="width: 570px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>5.3 <span style="font-weight: 700;">packages.yml - Configure the packages.</span>
+          </p>
+          <p>
+            <img src="/images/image16.png" width="570" align="center" style="width: 339px;" class="fr-dii fr-fic">
+          </p>
+          <p>5.4 <span style="font-weight: 700;">dbt_airflow_variables.yml - Necessary for running a dbt pipeline flow in the Fast.BI platform.</span>
+          </p>
+          <p>
+            <img src="/images/image17.png" width="570" align="center" style="width: 570px;" class="fr-dii fr-fic">
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-left u-clearfix u-section-7" id="sec-df27">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: left;">Running first DBT Project commands:</h1>
+          <p>6. Now, you're ready to run your first dbt project commands to compile and test it.</p>
+          <p style="text-align: left;">
+            <span style="line-height: 2.0;">6.1 <span style="font-weight: 700;">Command: dbt deps</span>. - [&nbsp;
+            </span>
+            <a href="https://docs.getdbt.com/reference/commands/deps" target="_blank" rel="noopener noreferrer"></a>
+            <span style="line-height: 2.0;">
+              <a href="https://docs.getdbt.com/reference/commands/deps" rel="noopener noreferrer" target="_blank">Link</a> ] Run the following command to install project dependencies:<img src="/images/image21.png" width="570" align="center" style="width: 570px;" class="fr-dib fr-fic fr-fil">
+            </span>6.2 <span style="font-weight: 700;">Command: dbt debug --target dev.</span> - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="https://docs.getdbt.com/reference/commands/debug" rel="noopener noreferrer" target="_blank">Link</a> ] Run the following command to check your connectivity to your Data Warehouse.
+          </p>
+          <p style="text-align: left;">
+            <img src="/images/image22.png" width="570" align="center" style="width: 570px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>
+            <span style="font-weight: 700;">Note:</span> If you encounter an error at this stage, it's likely related to your access rights on the Google Cloud Platform. Make sure you have the necessary access rights, particularly BigQuery Service access rights, to resolve any access-related issues.
+          </p>
+          <p>6.3 <span style="font-weight: 700;">Command: dbt parse --target dev</span>. - [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2" href="https://docs.getdbt.com/reference/commands/parse" rel="noopener noreferrer" target="_blank">Link</a> ] Run the following command to parse and validate the contents of your dbt project.<br>
+            <img src="/images/image23.png" width="570" align="center" style="width: 570px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>6.4 <span style="font-weight: 700;">Command: dbt compile --target dev --exclude package:re_data.</span> [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-3" href="https://docs.getdbt.com/reference/commands/compile" rel="noopener noreferrer" target="_blank">Link</a> ] Run the following command to compile your dbt project.&nbsp;
+          </p>
+          <p>
+            <img src="/images/image24.png" width="570" align="center" style="width: 570px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>
+            <span style="font-weight: 700;">Note:&nbsp;</span>In the command, we use the <span style="font-weight: 700;">'--exclude package:re_data'</span> flag. This is necessary because we do not have the <span style="font-weight: 700;">re_data</span> (Data Quality) initialization in this step. It will be automatically added by Fast.BI platform automation when we merge our new project into the master branch.
+          </p>
+          <p>6.5 <span style="font-weight: 700;">Command: dbt-dry-run --project-dir . --profiles-dir . --target dev --skip-not-compiled.</span> [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-4" href="https://pypi.org/project/dbt-dry-run/" rel="noopener noreferrer" target="_blank">Link</a>] Finally check your compiled models in SQL Format and perform a dry run on your Data Warehouse. <span style="font-style: italic;">The Command is optional.</span>
+          </p>
+          <p>
+            <img src="/images/image25.png" width="570" align="center" style="width: 987px;" class="fr-dib fr-fic fr-fil">
+            <br>
+          </p>
+          <p>
+            <span style="font-weight: 700;">Note:</span> After running the '<span style="font-weight: 700;">dbt compile'</span> command, a new folder named '<span style="font-weight: 700;">target'</span> is created. Inside this folder, you can find all your compiled model files in SQL language. The '<span style="font-weight: 700;">dbt-dry-run'</span> command tests these compiled SQL statements in your Data Warehouse to verify their execution.<br>With these commands, you can compile, validate, and dry run your dbt project, ensuring that everything is set up correctly before you proceed with further development and testing.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-left u-clearfix u-section-8" id="sec-f954">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: left;">Creating first DBT Project data:</h1>
+          <p style="text-align: left;">7. Now, you're ready to create first DataMart with dbt Labs data transformation engine.</p>
+          <p style="text-align: left;">7.1 <span style="font-weight: 700;">Command: dbt build --target dev --exclude package:re_data</span> [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="https://docs.getdbt.com/reference/commands/build" rel="noopener noreferrer" target="_blank">Link</a> ], Create DataMarts using the dbt Labs engine.
+          </p>
+          <p style="text-align: left;">
+            <img src="/images/image26.png" width="570" align="center" style="width: 866px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p style="text-align: left;">
+            <span style="font-weight: 700;">Note:&nbsp;</span>If you encounter failures during this step, don't be concerned. As mentioned before, when you ran the '<span style="font-weight: 700;">dbt compile'</span> command, it only generated your queries but didn't execute them. Similarly,<span style="font-weight: 700;">&nbsp;'dbt-dry-run'&nbsp;</span>only tests whether the queries can run on the Data Warehouse without physically executing them. Only when you extract data will you see the real results. Since you're using the '<span style="font-weight: 700;">--target dev'&nbsp;</span>flag, you won't affect any production data. In this case, you may discover that one of the tests fails due to issues with null values, which you may not want to have in your DataMart.
+          </p>
+          <p style="text-align: left;">7.2 &nbsp;If you encounter issues or errors in your model, take the necessary steps to address them. Once you've fixed the issues, you can re-run the same command: dbt build --target dev --exclude package:re_data&nbsp;</p>
+          <p style="text-align: left;">
+            <img src="/images/image27.png" width="570" align="center" style="width: 864px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p style="text-align: left;">This time, with the issues resolved, your models should work correctly. Continue refining your DataMart until you achieve the desired results.</p>
+          <p style="text-align: left;">7.3 Now you can back to <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2" href="/fast-bi-homepage.html">the main page</a>, click on the BigQuery icon, and you will find your extracted data in the Data Warehouse environment.
+          </p>
+          <p style="text-align: left;">
+            <img src="/images/image28.png" width="570" align="center" style="width: 989px;" class="fr-dib fr-fic fr-fil">
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-left u-clearfix u-section-9" id="sec-882f">
+      <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: left;">Generating Metadata Columns:</h1>
+          <p style="text-align: left;">
+            <span style="line-height: 2.0;">8. Now, you're ready to generate a metadata configuration for your models.</span>
+          </p>
+          <p style="text-align: left;">
+            <span style="line-height: 2.0;">8.1 <span style="font-weight: 700;">Command: lightdash validate --profiles-dir . --exclude package:re_data --target dev --verbose.</span> [&nbsp;
+            </span>
+            <a href="https://docs.lightdash.com/guides/cli/how-to-use-lightdash-validate" target="_blank" rel="noopener noreferrer"></a>
+            <span style="line-height: 2.0;">
+              <a href="https://docs.lightdash.com/guides/cli/how-to-use-lightdash-validate" rel="noopener noreferrer" target="_blank">Link</a> ] To Validate your dbt models, their metadata configuration compatibility with LightDash BI Visualization service.
+            </span>
+          </p>
+          <p style="text-align: left;">
+            <img src="/images/image29.png" width="570" align="center" style="width: 1044px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>Note: Ignore the last message, "No project specified, select a project to validate using --project &lt;projectUuid&gt; or create a preview environment using lightdash start-preview or configure your default project using lightdash config set." The LightDash BI Visualization project will be created by Fast.BI platform automation when the new dbt project is merged into the master branch.</p>
+          <p>8.2 <span style="font-weight: 700;">Command: lightdash generate &nbsp;--profiles-dir . --exclude package:re_data --target dev --verbose.&nbsp;</span>[ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="https://docs.lightdash.com/guides/cli/how-to-auto-generate-schema-files" rel="noopener noreferrer" target="_blank">Link</a> ] To generate dbt model metadata. Follow the generation wizard, if needed. Type '<span style="font-weight: 700;">Y'</span> to generate metadata for all models when the wizard pops up.
+          </p>
+          <p>
+            <img src="/images/image30.png" width="570" align="center" style="width: 1026px;" class="fr-dib fr-fic fr-fil">When metadata generation is complete, you'll find the <span style="font-weight: 700;">meta:</span> configuration key in your model schema.
+          </p>
+          <p>
+            <img src="/images/image31.png" width="570" align="center" style="width: 570px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>
+            <span style="font-weight: 700;">Note:&nbsp;</span>All Lightdash CLI commands may take time, as the workspace cloud IDE has limited resources.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-left u-clearfix u-section-10" id="sec-af13">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: left;">Cleaning - Formatting Your dbt Project Model Files:</h1>
+          <p>9. Now, you're ready to test your dbt project files' format and quality.</p>
+          <p style="text-align: left;">9.1 <span style="font-weight: 700;">Command: sqlfluff lint --annotation-level failure &nbsp;-p 8 .</span> [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="https://docs.sqlfluff.com/en/stable/cli.html#sqlfluff-lint" rel="noopener noreferrer" target="_blank">Link</a> ] To check your sql file format. Before running this command, open the .sqlfluff file and change line 12 from '<span style="font-weight: 700;">target = sa</span>' to '<span style="font-weight: 700;">target = dev</span>'.
+          </p>
+          <p style="text-align: left;">
+            <img src="/images/image32.png" width="570" align="center" style="width: 1084px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p style="text-align: left;">
+            <span style="font-weight: 700;">Note:</span> Ignore warning messages. After completing testing, set '<span style="font-weight: 700;">target = sa'</span> or other production targets as needed.
+          </p>
+          <p style="text-align: left;">9.2 <span style="font-weight: 700;">Command: dbt clean</span> [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-2" href="https://docs.getdbt.com/reference/commands/clean" rel="noopener noreferrer" target="_blank">Link</a> ] To cleanup your dbt project temporary files..
+          </p>
+          <p style="text-align: left;">
+            <img src="/images/image33.png" width="570" align="center" style="width: 663px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p style="text-align: left;">9.3 Command: yamllint -c yamllint-config.yaml -f colored . [ <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-3" href="https://yamllint.readthedocs.io/en/latest/" rel="noopener noreferrer" target="_blank">Link</a> ] To check if dbt project YAML files have a correct format.
+          </p>
+          <p style="text-align: left;">
+            <img src="/images/image34.png" width="570" align="center" style="width: 877px;" class="fr-dib fr-fic fr-fil">
+            <span style="font-weight: 700;">Note:</span> An empty output means your dbt project *.yml files have a good format. YAML file format is important for Fast.BI platform automation. If any of the dbt project YAML files have a bad structure, the automation may be stopped, and the merge process could fail.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="u-align-left u-clearfix u-section-11" id="sec-42a7">
+      <div class="u-clearfix u-sheet u-sheet-1">
+        <div class="fr-view u-clearfix u-rich-text u-text u-text-1">
+          <h1 style="text-align: left;">Releasing Your dbt Project:</h1>
+          <p style="text-align: left;">10. Now, you're ready to release your dbt project to production.</p>
+          <p style="text-align: left;">10.1 <span style="font-weight: 700;">Command: git config --global user.email "terasky@fast.bi" &amp;&amp; git config --global user.name "Terasky Admin".&nbsp;</span>Configure your git identity, Change the email address and user name to yours.
+          </p>
+          <p style="text-align: left;">10.2<span style="font-weight: 700;">&nbsp;Command: cd .. &amp;&amp; git add -A.&nbsp;</span>Return to the main '<span style="font-weight: 700;">dbt-data-model'</span> folder and add all your newly created files to the branch.
+          </p>
+          <p style="text-align: left;">10.2 <span style="font-weight: 700;">Command: git commit -am"New_tsb_example_dbt_elt_release"</span>. &nbsp;Commit your working branch with the new changes.
+          </p>
+          <p style="text-align: left;">
+            <img src="/images/image36.png" width="570" align="center" style="width: 917px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>10.3 <span style="font-weight: 700;">Command: git push --set-upstream origin DD_0001.&nbsp;</span>Push your local branch to the remote repository. Now you can open <a class="u-active-none u-border-none u-btn u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="/fast-bi-homepage.html">the main page</a>, click on the GitLab icon, and proceed with your merge request. Alternatively, click the link provided in the command output.
+          </p>
+          <p>
+            <img src="/images/image37.png" width="570" align="center" style="width: 910px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <ul id="isPasted" style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">Select the Assignee/Reviewer.</li>
+            <li style="border: 0px solid rgb(217, 217, 227); box-sizing: border-box; ">Click on "Create merge request."</li>
+          </ul>
+          <p>
+            <img src="/images/image38.png" width="570" align="center" style="width: 905px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>Wait until Fast.BI CI/CD automation finishes all pipelines and merges to production. Your dbt project is now ready for production use.</p>
+          <p>Your new dbt project will undergo a full End-to-End production-ready test. You can find your pipeline flow in Airflow.</p>
+          <p>
+            <img src="/images/image39.png" width="570" align="center" style="width: 834px;" class="fr-dib fr-fic fr-fil">&nbsp;10.4 Once the merge request has received all necessary approvals and the CI/CD process successfully finishes, you can merge your request into the main branch. Click the "Merge" button.
+          </p>
+          <p>
+            <img src="/images/image40.png" width="570" align="center" style="width: 800px;" class="fr-dib fr-fic fr-fil">
+          </p>
+          <p>10.6. Congratulations! You have successfully released your first dbt project to production.</p>
+        </div>
+      </div>
+    </section>
+    <div class="rj-floating-menu">
+      <button class="rj-btn-floating" onclick="window.location.href='/homepage'" dom-event="rj-togglefade-panel" dom-target="#PanelfloatingConfig" dom-status="false">
+        <i class="fa-solid fa-house-chimney"></i>
+    </button>
+    <style>
+      .rj-floating-menu .rj-btn-floating{
+        position: fixed;
+        right: 15px;
+        bottom: 15px;
+        border: none;
+        outline: none;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 33px;
+        background: rgba(157, 171, 255, 0.25);
+        color: #fff;
+        pointer-events: auto;
+    }
+      
+      .rj-floating-menu .rj-btn-floating i{
+        color: #858db1;
+        text-shadow: 1px 1px 1px rgba(0,0,0,.5);
+    }
+    </style>
+    </div>
+</body></html>
