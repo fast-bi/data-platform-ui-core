@@ -2,7 +2,6 @@ cm.yaml
 pre-deployment.yaml
 ./archive/
 ./templates/
-.*/
 *.json
 !spec/*.json
 __pycache__
