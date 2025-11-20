@@ -119,7 +119,9 @@ function switchTab(tabId, tabs, tabContents) {
 
 // Function to construct Git provider-specific URLs
 function constructGitProviderUrl(provider, baseUrl, branchName) {
-    switch (provider.toLowerCase()) {
+    const lowerProvider = provider ? provider.toLowerCase() : '';
+
+    switch (lowerProvider) {
         case 'gitlab':
             return `${baseUrl}/-/tree/${branchName}`;
         case 'github':
@@ -129,6 +131,15 @@ function constructGitProviderUrl(provider, baseUrl, branchName) {
         case 'bitbucket':
             return `${baseUrl}/src/${branchName}`;
         default:
+            // Attempt to infer from baseUrl if provider is not explicitly matched
+            if (baseUrl.includes('github.com')) {
+                 return `${baseUrl}/tree/${branchName}`;
+            } else if (baseUrl.includes('gitlab')) {
+                 return `${baseUrl}/-/tree/${branchName}`;
+            } else if (baseUrl.includes('bitbucket')) {
+                 return `${baseUrl}/src/${branchName}`;
+            }
+
             console.warn(`Unknown Git provider: ${provider}. Falling back to GitLab URL pattern.`);
             return `${baseUrl}/-/tree/${branchName}`;
     }

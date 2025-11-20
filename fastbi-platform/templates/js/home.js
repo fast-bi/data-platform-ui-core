@@ -484,3 +484,103 @@ $(document).on('click', function(event) {
         $notificationPopup.fadeOut();
     }
 });
+
+/*-- Custom Logo Feature --*/
+$(document).ready(function() {
+    // Check for custom logo on load
+    $.ajax({
+        url: '/ui-config/logo_status',
+        method: 'GET',
+        success: function(response) {
+            if (response.has_custom_logo) {
+                // Update logo src. Using a cache buster to ensure reload if changed recently
+                var newSrc = response.url + '?t=' + new Date().getTime();
+                $('.rj-img-logo img').attr('src', newSrc);
+                // Also update the index page logo if present
+                $('.site-logo img').attr('src', newSrc);
+            }
+        }
+    });
+
+    // Long press logic
+    var pressTimer;
+    var longPressTriggered = false;
+    // Target the link wrapper to handle click prevention
+    var logoLink = $('.rj-img-logo a');
+
+    logoLink.on('mousedown touchstart', function(e) {
+        longPressTriggered = false;
+        pressTimer = window.setTimeout(function() {
+            longPressTriggered = true;
+            showLogoUploadModal();
+        }, 15000); // 15 seconds
+    }).on('mouseup touchend mouseleave', function(e) {
+        clearTimeout(pressTimer);
+    }).on('click', function(e) {
+        if (longPressTriggered) {
+            e.preventDefault(); // Prevent navigation if it was a long press
+            longPressTriggered = false;
+        }
+    });
+
+    function showLogoUploadModal() {
+        // Remove existing modal if any
+        $('#logoUploadModal').remove();
+
+        var modalHtml = `
+            <div id="logoUploadModal" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);z-index:10000;display:flex;justify-content:center;align-items:center;">
+                <div style="background:#fff;padding:20px;border-radius:8px;text-align:center; width: 300px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <h3 style="margin-bottom: 15px; color: #333;">Upload Company Logo</h3>
+                    <p style="margin-bottom: 15px; font-size: 12px; color: #666;">Select a new logo image (PNG/JPG). This will replace the default logo globally.</p>
+                    <input type="file" id="logoInput" accept="image/*" style="margin-bottom: 15px; width: 100%;">
+                    <div style="display: flex; justify-content: space-between;">
+                        <button id="cancelLogoBtn" style="padding: 8px 15px; background: #ddd; border: none; border-radius: 4px; cursor: pointer;">Cancel</button>
+                        <button id="uploadLogoBtn" style="padding: 8px 15px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Upload</button>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        $('body').append(modalHtml);
+
+        $('#cancelLogoBtn').click(function() {
+            $('#logoUploadModal').remove();
+        });
+
+        $('#uploadLogoBtn').click(function() {
+            var fileInput = $('#logoInput')[0];
+            if (fileInput.files.length === 0) {
+                alert('Please select a file');
+                return;
+            }
+
+            var file = fileInput.files[0];
+            var formData = new FormData();
+            formData.append('logo', file);
+
+            // Show loading state
+            $(this).text('Uploading...').prop('disabled', true);
+
+            $.ajax({
+                url: '/ui-config/upload_logo',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(response) {
+                    alert('Logo uploaded successfully!');
+                    $('#logoUploadModal').remove();
+                    location.reload();
+                },
+                error: function(xhr, status, error) {
+                    var errorMsg = 'Upload failed';
+                    if (xhr.responseJSON && xhr.responseJSON.error) {
+                        errorMsg = xhr.responseJSON.error;
+                    }
+                    alert(errorMsg);
+                    $('#uploadLogoBtn').text('Upload').prop('disabled', false);
+                }
+            });
+        });
+    }
+});
