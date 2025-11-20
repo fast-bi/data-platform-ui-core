@@ -14,7 +14,8 @@ import json
 import urllib.parse
 from urllib.parse import unquote
 from datetime import datetime
-from flask import Flask, redirect, url_for, render_template, flash, session, request, jsonify
+from flask import Flask, redirect, url_for, render_template, flash, session, request, jsonify, send_from_directory
+from werkzeug.utils import secure_filename
 from flask_login import LoginManager, login_user, logout_user, current_user
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -1950,6 +1951,64 @@ def clear_cache():
     except Exception as e:
         app.logger.error(f"Error clearing cache: {str(e)}")
         return jsonify({"error": str(e)}), 500
+
+@app.context_processor
+def inject_logo_path():
+    instance_path = os.path.abspath('instance')
+    logo_path = os.path.join(instance_path, 'custom_logo.png')
+    if os.path.exists(logo_path):
+        # Use a cache buster timestamp to ensure updates are seen immediately
+        # In a real scenario, we might check file modification time, but time.time() is sufficient for this purpose if called once per request or handled in JS.
+        # For context processor, we'll just provide the base path and let JS handle cache busting or rely on browser cache behavior.
+        # Actually, to avoid flicker, we should point directly to the custom logo endpoint.
+        return dict(logo_path='/ui-config/custom_logo')
+    else:
+        return dict(logo_path='/images/logo_transparent.png')
+
+# Custom Logo Feature
+@app.route('/ui-config/upload_logo', methods=['POST'])
+def upload_logo():
+    if not oidc.user_loggedin:
+        return jsonify({'error': 'Unauthorized'}), 401
+    
+    user_info = oidc.user_getinfo(['groups'])
+    user_groups = set(user_info.get('groups', []))
+    user_groups_lower = {group.lower() for group in user_groups}
+    
+    # Check for Admin role (case-insensitive)
+    if not any(admin_group in user_groups_lower for admin_group in ['admin', 'consoleadmin']):
+         return jsonify({'error': 'Forbidden: Admin access required'}), 403
+
+    if 'logo' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
+    
+    file = request.files['logo']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
+        
+    if file:
+        filename = "custom_logo.png" # Force filename to ensure consistency
+        # Ensure instance directory exists
+        instance_path = os.path.abspath('instance')
+        if not os.path.exists(instance_path):
+            os.makedirs(instance_path)
+            
+        file.save(os.path.join(instance_path, filename))
+        return jsonify({'message': 'Logo uploaded successfully'}), 200
+
+@app.route('/ui-config/custom_logo')
+def custom_logo():
+    instance_path = os.path.abspath('instance')
+    return send_from_directory(instance_path, 'custom_logo.png')
+
+@app.route('/ui-config/logo_status')
+def logo_status():
+    instance_path = os.path.abspath('instance')
+    logo_path = os.path.join(instance_path, 'custom_logo.png')
+    if os.path.exists(logo_path):
+        return jsonify({'has_custom_logo': True, 'url': '/ui-config/custom_logo'}), 200
+    else:
+        return jsonify({'has_custom_logo': False}), 200
 
 if __name__ == "__main__":
     # Determine the environment and configure Flask accordingly
