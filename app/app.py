@@ -696,6 +696,83 @@ def site_configuration():
         # User not logged in
         return redirect(url_for('index'))
 
+# Site vault route - Only enabled when VAULT_UI is set to true
+if app.config['VAULT_UI'] == True or app.config['VAULT_UI'].lower() == 'true':
+    @app.route('/vault')
+    def site_vault():
+        # Check if user is logged in
+        if not oidc.user_loggedin:
+            return redirect(url_for('index'))
+        
+        user_info = oidc.user_getinfo(['email', 'preferred_username', 'groups'])
+        # Retrieve user details from the database using the metadata handler
+        user_data = app.user_metadata_handler.get_user_by_id(current_user.id)
+        
+        if not user_data:
+            return render_template('403.html', 
+                allowed_groups='User data not found', 
+                current_user=current_user, 
+                **SourceConfig.get_environment_variables())
+        
+        follow_mode = user_data['follow_mode']
+        iframe_mode = user_data['iframe_mode']
+        light_dark_mode = user_data['light_dark_mode']
+
+        # Check if 'groups' is part of the response and act accordingly
+        user_groups = set(user_info.get('groups', []))  # Convert to set for easier manipulation
+        
+        # Updated to match Vault OIDC groups
+        mandatory_group = '/Data Platform Service/Vault'  # Note: singular "Service"
+        admin_group = '/Access Management/Administrators'
+        
+        # Check if user has Vault access OR is an administrator
+        has_vault_access = mandatory_group in user_groups
+        is_admin = admin_group in user_groups
+
+        if has_vault_access or is_admin:
+            # User has access to Vault, render the vault.html page
+            # Get the IDP_SSO_CONTROL_MODE value from the environment variable with a default of 'disabled'
+            vault_control_mode = app.config.get('VAULT_CONTROL_MODE', 'disabled')
+            vault_control_mode_endpoint = app.config.get('VAULT_LINK', '')
+            
+            
+            # Check if SSO redirect is enabled
+            if vault_control_mode == 'enabled' and vault_control_mode_endpoint:
+                # Redirect to the external login URL
+                return redirect(vault_control_mode_endpoint)
+            else:
+                # Construct Vault OIDC login URL (pre-selects OIDC method)
+                # This URL format bypasses the method selection dropdown
+                vault_base_url = vault_control_mode_endpoint.rstrip('/')
+                vault_oidc_url = f"{vault_base_url}/ui/vault/auth?with=oidc"
+                
+                # Render the vault.html template with iframe
+                return render_template('vault.html', 
+                    current_user=current_user, 
+                    user_name=user_data['username'], 
+                    user_email=user_data['email'], 
+                    follow_mode=follow_mode, 
+                    iframe_mode=iframe_mode, 
+                    light_dark_mode=light_dark_mode,
+                    vault_link=vault_oidc_url,
+                    **SourceConfig.get_environment_variables())
+        else:
+            # User does not have access
+            allowed_groups_str = f"{mandatory_group} or {admin_group}"
+            return render_template('403.html', 
+                allowed_groups=allowed_groups_str, 
+                current_user=current_user, 
+                user_name=user_data['username'], 
+                user_email=user_data['email'], 
+                follow_mode=follow_mode, 
+                iframe_mode=iframe_mode, 
+                light_dark_mode=light_dark_mode, 
+                **SourceConfig.get_environment_variables())
+else:
+    @app.route('/vault')
+    def site_vault():
+        return redirect(url_for('index'))
+
 # Homepage route
 @app.route('/homepage')
 def homepage():

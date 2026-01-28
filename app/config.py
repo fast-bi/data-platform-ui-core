@@ -171,7 +171,10 @@ class Config:
     IDP_SSO_LINK = os.environ.get('IDP_SSO_LINK')
     IDP_SSO_USERS_LINK = os.environ.get('IDP_SSO_USERS_LINK')
 
-    #Stats
+    #Vault UI Configuration
+    VAULT_CONTROL_MODE = os.environ.get('VAULT_CONTROL_MODE', 'disabled')
+    VAULT_LINK = os.environ.get('VAULT_LINK')
+    VAULT_UI = os.environ.get('VAULT_UI', 'false')
 
     # Datawarehouse Stats
     FASTBI_PLATFORM_DWH = os.environ.get('FASTBI_PLATFORM_DWH', 'bigquery')
@@ -217,6 +220,8 @@ class SourceConfig:
             'wiki_link': os.environ.get('WIKI_LINK', ''),
             'iam_idp_management_link': os.environ.get('IDP_SSO_LINK', ''),
             'iam_idp_user_management_link': os.environ.get('IDP_SSO_USERS_LINK', ''),
+            'vault_base_link': os.environ.get('VAULT_LINK', ''),
+            'vault_ui_enabled': SourceConfig._str_to_bool(os.environ.get('VAULT_UI', 'false')),
             'cicd_workflow_link': os.environ.get('CICD_WORKFLOW_LINK', ''),
             'customer': os.environ.get('CUSTOMER', 'Fast.bi'),
             'enable_bash_operator_tab': SourceConfig._str_to_bool(os.environ.get('ENABLE_BASH_OPERATOR_TAB', 'False')),

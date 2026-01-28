@@ -264,6 +264,9 @@
                                                 <a href="/profile" class="rj-link-control"><i class="fa fa-user"></i> My Profile</a>                                    
                                                 <a href="/configuration" class="rj-link-control"><i class="fa fa-cog"></i> Site Configuration</a>
                                                 <a href="/data-manipulation/admin-panel" class="rj-link-control"><i class="fa fa-cogs"></i> Hub Panel</a>
+                                                {% if vault_ui_enabled %}
+                                                <a href="/vault" class="rj-link-control"><i class="fa-solid fa-vault"></i> Vault</a>
+                                                {% endif %}
                                                 <a href="{{ url_for('logout') }}" class="rj-link-control"><i class="fa fa-sign-out-alt"></i> LogOut</a>        
                                             </div>
                                         </div>
