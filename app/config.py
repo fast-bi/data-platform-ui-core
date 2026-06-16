@@ -171,10 +171,27 @@ class Config:
     IDP_SSO_LINK = os.environ.get('IDP_SSO_LINK')
     IDP_SSO_USERS_LINK = os.environ.get('IDP_SSO_USERS_LINK')
 
-    #Stats
+    #Vault UI Configuration
+    VAULT_CONTROL_MODE = os.environ.get('VAULT_CONTROL_MODE', 'disabled')
+    VAULT_LINK = os.environ.get('VAULT_LINK')
+    VAULT_UI = os.environ.get('VAULT_UI', 'false')
 
     # Datawarehouse Stats
     FASTBI_PLATFORM_DWH = os.environ.get('FASTBI_PLATFORM_DWH', 'bigquery')
+
+    # BigQuery FinOps (dbt-bigquery-monitoring) audit tab
+    # Gate flag: when true, the /stats page exposes the "BigQuery FinOps" tab in
+    # addition to the legacy "Warehouse Stats" view. When false/unset, /stats
+    # loads exactly as before (single legacy view, no tabs).
+    FASTBI_BQ_AUDIT = os.environ.get('FASTBI_BQ_AUDIT', 'False')
+    # Warehouse coordinates for the monitoring dataset (fully parameterized).
+    # Project/region default to the values in the mounted BigQuery secret.
+    FASTBI_BQ_AUDIT_WAREHOUSE_PROJECT = os.environ.get('FASTBI_BQ_AUDIT_WAREHOUSE_PROJECT')
+    FASTBI_BQ_AUDIT_WAREHOUSE_DATASET = os.environ.get('FASTBI_BQ_AUDIT_WAREHOUSE_DATASET', 'prod_dbt_bigquery_monitoring')
+    FASTBI_BQ_AUDIT_WAREHOUSE_DATASET_REGION = os.environ.get('FASTBI_BQ_AUDIT_WAREHOUSE_DATASET_REGION')
+    # Cache TTL (seconds) for audit API responses. Data refreshes nightly, so a
+    # 1-hour default keeps the UI snappy without serving stale numbers.
+    FASTBI_BQ_AUDIT_CACHE_TTL = int(os.environ.get('FASTBI_BQ_AUDIT_CACHE_TTL', 3600))
 
     # Add the Celery configuration to your Flask app's configuration
     BQ_PROJECT_ID = os.getenv('BQ_PROJECT_ID')
@@ -217,9 +234,12 @@ class SourceConfig:
             'wiki_link': os.environ.get('WIKI_LINK', ''),
             'iam_idp_management_link': os.environ.get('IDP_SSO_LINK', ''),
             'iam_idp_user_management_link': os.environ.get('IDP_SSO_USERS_LINK', ''),
+            'vault_base_link': os.environ.get('VAULT_LINK', ''),
+            'vault_ui_enabled': SourceConfig._str_to_bool(os.environ.get('VAULT_UI', 'false')),
             'cicd_workflow_link': os.environ.get('CICD_WORKFLOW_LINK', ''),
             'customer': os.environ.get('CUSTOMER', 'Fast.bi'),
             'enable_bash_operator_tab': SourceConfig._str_to_bool(os.environ.get('ENABLE_BASH_OPERATOR_TAB', 'False')),
             'enable_gke_operator_tab': SourceConfig._str_to_bool(os.environ.get('ENABLE_GKE_OPERATOR_TAB', 'False')),
-            'enable_api_operator_tab': SourceConfig._str_to_bool(os.environ.get('ENABLE_API_OPERATOR_TAB', 'False'))
+            'enable_api_operator_tab': SourceConfig._str_to_bool(os.environ.get('ENABLE_API_OPERATOR_TAB', 'False')),
+            'fastbi_bq_audit_enabled': SourceConfig._str_to_bool(os.environ.get('FASTBI_BQ_AUDIT', 'False'))
         }

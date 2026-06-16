@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="keywords" content="BI, PLATFORM, DATA, ELT, DATA-MODEL, DATA-CATALOG, DATA-QUALITY">
     <meta name="description" content="Are you ready to revolutionize the way you handle Business Analysis and Data Modeling? Look no further. Fast BI Platform is your ultimate solution for DataOps...">
-    <title>Fast.BI - Airflow</title>
+    <title>Fast.BI - VSCode Console</title>
     <link rel="canonical" href="Business Analysis. FAST.">
-    <link rel="icon" href="/images/airflow_64x64_emoji_transparent.png" type="image/x-icon">
-    <link rel="shortcut icon" href="/images/airflow_64x64_emoji_transparent.png" type="image/x-icon">
+    <link rel="icon" href="/images/Visual_Studio_Code_1.35_icon.svg.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/images/Visual_Studio_Code_1.35_icon.svg.png" type="image/x-icon">
     <script class="u-script" type="text/javascript" src="/templates/js/home.js" defer=""></script>
     <link rel="stylesheet" href="/templates/css/home.css" media="screen">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">    
@@ -307,13 +307,13 @@
                         </header>                        
                     </div>
                 </div>                
-            <iframe src="{{ airflow_link }}"></iframe>
+            <iframe src="{{ vault_link }}" allow="clipboard-read; clipboard-write"></iframe>
             <style>
                 iframe {
                     width: 100% !important;
                     border: none !important;
                     overflow: auto !important;
-                    height: 100% !important;
+                    height: 100% !important; /* Fill available space */
                 }
                 
                 /* Add wrapper for iframe to control its positioning */
@@ -366,14 +366,8 @@
 
                 // Adjust when content loads
                 window.addEventListener('load', adjustIframeHeight);
-
-                jQuery(document).ready(function($) {
-                    $('.float-nav').click(function() {
-                        $('.main-nav, .menu-btn').toggleClass('active');
-                        $('.menu-btn').focus();
-                    });
-                });
-                
+            </script>
+            <script>
                 document.cookie = "LSOLH=value; SameSite=None; Secure";
                 document.cookie = "__Secure-3PSID=value; SameSite=None; Secure";
             </script>

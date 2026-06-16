@@ -283,6 +283,9 @@
                                                 Profile</a>
                                             <a href="/configuration" class="rj-link-control"><i class="fa fa-cog"></i>
                                                 Site Configuration</a>
+                                            {% if vault_ui_enabled %}
+                                            <a href="/vault" class="rj-link-control"><i class="fa-solid fa-vault"></i> Vault</a>
+                                            {% endif %}
                                             <a href="{{ url_for('logout') }}" class="rj-link-control"><i
                                                     class="fa fa-sign-out-alt"></i> LogOut</a>
                                         </div>
@@ -326,6 +329,14 @@
                 </div>
             </div>
             <div class="container-fluid py-4">
+                {% if fastbi_bq_audit_enabled %}
+                <ul class="stats-tabs" role="tablist">
+                    <li class="stats-tab active" data-pane="pane-warehouse-stats"><i class="fa-solid fa-database"></i> Warehouse Stats</li>
+                    <li class="stats-tab" data-pane="pane-bq-finops"><i class="fa-solid fa-magnifying-glass-chart"></i> BigQuery FinOps</li>
+                </ul>
+                {% endif %}
+                <div class="stats-tab-content">
+                <div class="stats-pane active" id="pane-warehouse-stats">
                 <div class="row">
                     <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                         <div class="card">
@@ -758,6 +769,135 @@
                     </div>
                 </div>
                 </div>
+                </div> <!-- /#pane-warehouse-stats -->
+                {% if fastbi_bq_audit_enabled %}
+                <div class="stats-pane" id="pane-bq-finops">
+                    <style>
+                        .stats-tabs { list-style:none; display:flex; gap:.5rem; padding:0; margin:0 0 1.25rem 0; border-bottom:1px solid rgba(0,0,0,.1); }
+                        .stats-tab { cursor:pointer; padding:.6rem 1.1rem; font-weight:600; font-size:.9rem; color:#67748e; border-bottom:3px solid transparent; transition:all .15s ease; }
+                        .stats-tab:hover { color:#344767; }
+                        .stats-tab.active { color:#5e72e4; border-bottom-color:#5e72e4; }
+                        .stats-pane { display:none; }
+                        .stats-pane.active { display:block; }
+                        body.rj-dark-mode .stats-tabs { border-bottom-color:rgba(255,255,255,.12); }
+                        body.rj-dark-mode .stats-tab { color:#a0aec0; }
+                        body.rj-dark-mode .stats-tab.active { color:#8a9bff; border-bottom-color:#8a9bff; }
+                        .finops-filterbar { padding:1rem 1.25rem; margin-bottom:1.25rem; }
+                        .finops-filterbar .filter-grid { display:flex; flex-wrap:wrap; gap:1rem; align-items:flex-end; }
+                        .finops-filterbar .filter-field { display:flex; flex-direction:column; min-width:160px; flex:1 1 160px; }
+                        .finops-filterbar label { font-size:.7rem; text-transform:uppercase; font-weight:700; color:#8392ab; margin-bottom:.25rem; letter-spacing:.03em; }
+                        .finops-filterbar input, .finops-filterbar select { padding:.45rem .6rem; border:1px solid #d2d6da; border-radius:.5rem; font-size:.85rem; background:#fff; color:#344767; }
+                        .finops-filterbar .filter-actions { display:flex; gap:.5rem; }
+                        .finops-btn { cursor:pointer; border:none; border-radius:.5rem; padding:.5rem 1rem; font-size:.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.03em; }
+                        .finops-btn-primary { background:#5e72e4; color:#fff; }
+                        .finops-btn-ghost { background:transparent; color:#5e72e4; border:1px solid #5e72e4; }
+                        body.rj-dark-mode .finops-filterbar input, body.rj-dark-mode .finops-filterbar select { background:#1a2035; color:#e9ecef; border-color:#2d3651; }
+                        .finops-subtabs { list-style:none; display:flex; flex-wrap:wrap; gap:.4rem; padding:0; margin:0 0 1.25rem 0; }
+                        .finops-subtab { cursor:pointer; padding:.45rem .9rem; font-size:.82rem; font-weight:600; border-radius:.5rem; color:#67748e; background:rgba(94,114,228,.08); }
+                        .finops-subtab.active { background:#5e72e4; color:#fff; }
+                        body.rj-dark-mode .finops-subtab { color:#a0aec0; background:rgba(138,155,255,.12); }
+                        body.rj-dark-mode .finops-subtab.active { background:#8a9bff; color:#0b1020; }
+                        .finops-subpane { display:none; }
+                        .finops-subpane.active { display:block; }
+                        /* KPI grid: even, non-squeezed stat cards regardless of theme grid */
+                        #sub-overview > #ov-kpis { margin-bottom:2rem; }
+                        .finops-kpi-grid { display:flex; flex-wrap:wrap; gap:1rem; margin-bottom:1.5rem; clear:both; overflow:hidden; }
+                        .finops-kpi-card { flex:1 1 200px; min-width:190px; display:flex; align-items:center; gap:.85rem; background:#fff; border-radius:1rem; padding:1rem 1.15rem; box-shadow:0 4px 12px rgba(0,0,0,.05); }
+                        .finops-kpi-card .kpi-icon { width:46px; height:46px; border-radius:.75rem; display:flex; align-items:center; justify-content:center; font-size:1.1rem; flex-shrink:0; }
+                        .finops-kpi-card .kpi-body { min-width:0; }
+                        .finops-kpi-card .kpi-label { font-size:.68rem; text-transform:uppercase; font-weight:700; color:#8392ab; margin:0 0 .15rem 0; letter-spacing:.02em; white-space:nowrap; }
+                        .finops-kpi-card h3 { font-size:1.35rem; font-weight:700; margin:0; color:#344767; line-height:1.1; }
+                        body.rj-dark-mode .finops-kpi-card { background:#111729; box-shadow:0 4px 12px rgba(0,0,0,.3); }
+                        body.rj-dark-mode .finops-kpi-card h3 { color:#e9ecef; }
+                        .finops-loading { padding:1.5rem; text-align:center; color:#8392ab; font-size:.85rem; }
+                        .finops-note { padding:.75rem 1rem; margin-bottom:1rem; background:rgba(94,114,228,.08); border-left:3px solid #5e72e4; border-radius:.4rem; font-size:.82rem; color:#67748e; }
+                        body.rj-dark-mode .finops-note { background:rgba(138,155,255,.1); color:#a0aec0; }
+                        /* clickable query cell + modal */
+                        td.qcell { max-width:520px; }
+                        .finops-q { display:flex; align-items:center; gap:.4rem; cursor:pointer; }
+                        .finops-q .finops-q-prev { font-family:monospace; font-size:.72rem; color:#5e72e4; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:460px; }
+                        .finops-q .finops-q-ico { font-size:.7rem; color:#8392ab; flex-shrink:0; }
+                        .finops-q:hover .finops-q-prev { text-decoration:underline; }
+                        body.rj-dark-mode .finops-q .finops-q-prev { color:#8a9bff; }
+                        .finops-modal { position:fixed; inset:0; background:rgba(0,0,0,.55); z-index:2000; align-items:center; justify-content:center; }
+                        .finops-modal-box { background:#fff; width:min(900px,92vw); max-height:80vh; border-radius:.75rem; display:flex; flex-direction:column; overflow:hidden; box-shadow:0 20px 60px rgba(0,0,0,.4); }
+                        .finops-modal-head { display:flex; align-items:center; justify-content:space-between; padding:.85rem 1.1rem; border-bottom:1px solid #e9ecef; font-weight:700; color:#344767; }
+                        .finops-modal-pre { margin:0; padding:1.1rem; overflow:auto; font-size:.8rem; line-height:1.5; white-space:pre-wrap; word-break:break-word; color:#344767; }
+                        body.rj-dark-mode .finops-modal-box { background:#1a2035; }
+                        body.rj-dark-mode .finops-modal-head { color:#e9ecef; border-bottom-color:#2d3651; }
+                        body.rj-dark-mode .finops-modal-pre { color:#cfd6e4; }
+                        .finops-error { padding:1rem 1.25rem; color:#f5365c; font-size:.85rem; }
+                        .finops-table-wrap { max-height:480px; overflow:auto; }
+                        .finops-table-wrap table { width:100%; font-size:.8rem; }
+                        .finops-table-wrap th { position:sticky; top:0; background:#fff; z-index:1; text-transform:uppercase; font-size:.62rem; font-weight:700; color:#8392ab; padding:.5rem .6rem; white-space:nowrap; border-bottom:1px solid #e9ecef; }
+                        .finops-table-wrap td { padding:.45rem .6rem; border-bottom:1px solid #f1f3f5; color:#344767; white-space:nowrap; max-width:420px; overflow:hidden; text-overflow:ellipsis; }
+                        .finops-table-wrap td.num { text-align:right; font-variant-numeric:tabular-nums; }
+                        body.rj-dark-mode .finops-table-wrap th { background:#111729; color:#a0aec0; border-bottom-color:#2d3651; }
+                        body.rj-dark-mode .finops-table-wrap td { color:#cfd6e4; border-bottom-color:#1c2434; }
+                        .badge-priority { padding:.15rem .5rem; border-radius:.4rem; font-size:.65rem; font-weight:700; text-transform:uppercase; }
+                        .badge-priority.P1, .badge-priority.HIGH { background:#fdd; color:#c00; }
+                        .badge-priority.P2, .badge-priority.MEDIUM { background:#fff3cd; color:#9a7000; }
+                        .badge-priority.P3, .badge-priority.LOW { background:#d4edda; color:#1b7a3d; }
+                    </style>
+
+                    <!-- Global filter bar -->
+                    <div class="card finops-filterbar">
+                        <div class="filter-grid">
+                            <div class="filter-field">
+                                <label for="finops-date-from">Date from</label>
+                                <input type="date" id="finops-date-from">
+                            </div>
+                            <div class="filter-field">
+                                <label for="finops-date-to">Date to</label>
+                                <input type="date" id="finops-date-to">
+                            </div>
+                            <div class="filter-field">
+                                <label for="finops-project">Project</label>
+                                <select id="finops-project"><option value="">All projects</option></select>
+                            </div>
+                            <div class="filter-field">
+                                <label for="finops-user">User</label>
+                                <select id="finops-user"><option value="">All users</option></select>
+                            </div>
+                            <div class="filter-field">
+                                <label for="finops-model">dbt Model</label>
+                                <select id="finops-model"><option value="">All models</option></select>
+                            </div>
+                            <div class="filter-field">
+                                <label for="finops-category">Cost category</label>
+                                <select id="finops-category"><option value="">All categories</option></select>
+                            </div>
+                            <div class="filter-actions">
+                                <button class="finops-btn finops-btn-primary" id="finops-apply"><i class="fa-solid fa-filter"></i> Apply</button>
+                                <button class="finops-btn finops-btn-ghost" id="finops-reset"><i class="fa-solid fa-rotate-left"></i> Reset</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sub-tabs -->
+                    <ul class="finops-subtabs" role="tablist">
+                        <li class="finops-subtab active" data-sub="overview"><i class="fa-solid fa-gauge-high"></i> Overview</li>
+                        <li class="finops-subtab" data-sub="compute"><i class="fa-solid fa-bolt"></i> Compute &amp; Queries</li>
+                        <li class="finops-subtab" data-sub="users"><i class="fa-solid fa-users"></i> Users</li>
+                        <li class="finops-subtab" data-sub="dbt"><i class="fa-solid fa-cubes"></i> dbt Models</li>
+                        <li class="finops-subtab" data-sub="storage"><i class="fa-solid fa-hard-drive"></i> Storage</li>
+                        <li class="finops-subtab" data-sub="savings"><i class="fa-solid fa-piggy-bank"></i> Recommendations &amp; Savings</li>
+                        <li class="finops-subtab" data-sub="config"><i class="fa-solid fa-gear"></i> Config &amp; Audit</li>
+                        <li class="finops-subtab" data-sub="raw"><i class="fa-solid fa-database"></i> Raw &amp; Advanced</li>
+                    </ul>
+
+                    <!-- Lazy-rendered sub-panes (populated by bq_finops.js) -->
+                    <div class="finops-subpane active" id="sub-overview"></div>
+                    <div class="finops-subpane" id="sub-compute"></div>
+                    <div class="finops-subpane" id="sub-users"></div>
+                    <div class="finops-subpane" id="sub-dbt"></div>
+                    <div class="finops-subpane" id="sub-storage"></div>
+                    <div class="finops-subpane" id="sub-savings"></div>
+                    <div class="finops-subpane" id="sub-config"></div>
+                    <div class="finops-subpane" id="sub-raw"></div>
+                </div> <!-- /#pane-bq-finops -->
+                {% endif %}
+                </div> <!-- /.stats-tab-content -->
 
             </div>
         </div>
@@ -767,6 +907,7 @@
 
 
 <script src="./templates/js/chartjs.min.js"></script>
+{% if fastbi_bq_audit_enabled %}<script src="/templates/js/bq_finops.js" defer></script>{% endif %}
 
 <script>
     function getLegendColor() {

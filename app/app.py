@@ -696,6 +696,83 @@ def site_configuration():
         # User not logged in
         return redirect(url_for('index'))
 
+# Site vault route - Only enabled when VAULT_UI is set to true
+if app.config['VAULT_UI'] == True or app.config['VAULT_UI'].lower() == 'true':
+    @app.route('/vault')
+    def site_vault():
+        # Check if user is logged in
+        if not oidc.user_loggedin:
+            return redirect(url_for('index'))
+        
+        user_info = oidc.user_getinfo(['email', 'preferred_username', 'groups'])
+        # Retrieve user details from the database using the metadata handler
+        user_data = app.user_metadata_handler.get_user_by_id(current_user.id)
+        
+        if not user_data:
+            return render_template('403.html', 
+                allowed_groups='User data not found', 
+                current_user=current_user, 
+                **SourceConfig.get_environment_variables())
+        
+        follow_mode = user_data['follow_mode']
+        iframe_mode = user_data['iframe_mode']
+        light_dark_mode = user_data['light_dark_mode']
+
+        # Check if 'groups' is part of the response and act accordingly
+        user_groups = set(user_info.get('groups', []))  # Convert to set for easier manipulation
+        
+        # Updated to match Vault OIDC groups
+        mandatory_group = '/Data Platform Service/Vault'  # Note: singular "Service"
+        admin_group = '/Access Management/Administrators'
+        
+        # Check if user has Vault access OR is an administrator
+        has_vault_access = mandatory_group in user_groups
+        is_admin = admin_group in user_groups
+
+        if has_vault_access or is_admin:
+            # User has access to Vault, render the vault.html page
+            # Get the IDP_SSO_CONTROL_MODE value from the environment variable with a default of 'disabled'
+            vault_control_mode = app.config.get('VAULT_CONTROL_MODE', 'disabled')
+            vault_control_mode_endpoint = app.config.get('VAULT_LINK', '')
+            
+            
+            # Check if SSO redirect is enabled
+            if vault_control_mode == 'enabled' and vault_control_mode_endpoint:
+                # Redirect to the external login URL
+                return redirect(vault_control_mode_endpoint)
+            else:
+                # Construct Vault OIDC login URL (pre-selects OIDC method)
+                # This URL format bypasses the method selection dropdown
+                vault_base_url = vault_control_mode_endpoint.rstrip('/')
+                vault_oidc_url = f"{vault_base_url}/ui/vault/auth?with=oidc"
+                
+                # Render the vault.html template with iframe
+                return render_template('vault.html', 
+                    current_user=current_user, 
+                    user_name=user_data['username'], 
+                    user_email=user_data['email'], 
+                    follow_mode=follow_mode, 
+                    iframe_mode=iframe_mode, 
+                    light_dark_mode=light_dark_mode,
+                    vault_link=vault_oidc_url,
+                    **SourceConfig.get_environment_variables())
+        else:
+            # User does not have access
+            allowed_groups_str = f"{mandatory_group} or {admin_group}"
+            return render_template('403.html', 
+                allowed_groups=allowed_groups_str, 
+                current_user=current_user, 
+                user_name=user_data['username'], 
+                user_email=user_data['email'], 
+                follow_mode=follow_mode, 
+                iframe_mode=iframe_mode, 
+                light_dark_mode=light_dark_mode, 
+                **SourceConfig.get_environment_variables())
+else:
+    @app.route('/vault')
+    def site_vault():
+        return redirect(url_for('index'))
+
 # Homepage route
 @app.route('/homepage')
 def homepage():
@@ -932,6 +1009,114 @@ def stats():
             return render_template('403.html', allowed_groups='User data not found', current_user=current_user, **SourceConfig.get_environment_variables())
     else:
         return redirect(url_for('index'))
+
+### BigQuery FinOps (dbt-bigquery-monitoring) audit API
+# These JSON endpoints back the "BigQuery FinOps" tab on /stats. They are only
+# active when FASTBI_BQ_AUDIT is true; otherwise they return 404 so the feature
+# is fully gated. Access mirrors the /stats page (login + Data_Platform_Stats
+# group + role). Responses use the {success, data, error} envelope.
+
+def _bq_audit_enabled():
+    flag = app.config.get('FASTBI_BQ_AUDIT', 'False')
+    return flag is True or str(flag).lower() == 'true'
+
+
+def _bq_audit_guard():
+    """Enforce gate + auth for audit API calls.
+
+    Returns a (response, status) tuple on rejection, or None when access is
+    granted.
+    """
+    if not _bq_audit_enabled():
+        return jsonify({'success': False, 'data': None, 'error': 'BigQuery FinOps is not enabled'}), 404
+    if not oidc.user_loggedin:
+        return jsonify({'success': False, 'data': None, 'error': 'Authentication required'}), 401
+    user_info = oidc.user_getinfo(['email', 'preferred_username', 'groups'])
+    user_groups = set(user_info.get('groups', []))
+    mandatory_group = '/Data Platform Services/Data_Platform_Stats'
+    role_based_groups = {'Admin', 'User', 'Viewer'}
+    if not (mandatory_group in user_groups and not user_groups.isdisjoint(role_based_groups)):
+        return jsonify({'success': False, 'data': None, 'error': 'Access denied'}), 403
+    return None
+
+
+def _bq_audit_filters():
+    """Collect supported filters from the request query string."""
+    return {
+        'date_from': request.args.get('date_from'),
+        'date_to': request.args.get('date_to'),
+        'project_id': request.args.get('project_id'),
+        'user_email': request.args.get('user_email'),
+        'dbt_model_name': request.args.get('dbt_model_name'),
+        'cost_category': request.args.get('cost_category'),
+    }
+
+
+def _bq_audit_cache_key(scope, filters):
+    relevant = {k: v for k, v in (filters or {}).items() if v}
+    return 'bq_audit:' + scope + ':' + json.dumps(relevant, sort_keys=True)
+
+
+@app.route('/stats/bq-audit/api/summary')
+def bq_audit_summary():
+    guard = _bq_audit_guard()
+    if guard is not None:
+        return guard
+    import app.datawarehouse_stats.bigquery_audit as audit
+    filters = _bq_audit_filters()
+    cache_key = _bq_audit_cache_key('summary', filters)
+    cached = app.cache.get(cache_key)
+    if cached is not None:
+        return jsonify({'success': True, 'data': cached, 'error': None})
+    try:
+        data = audit.get_summary(filters)
+        app.cache.set(cache_key, data, timeout=app.config['FASTBI_BQ_AUDIT_CACHE_TTL'])
+        return jsonify({'success': True, 'data': data, 'error': None})
+    except Exception as exc:
+        logging.error('bq_audit_summary failed: %s', exc)
+        return jsonify({'success': False, 'data': None, 'error': 'Failed to load summary'}), 500
+
+
+@app.route('/stats/bq-audit/api/filters')
+def bq_audit_filter_options():
+    guard = _bq_audit_guard()
+    if guard is not None:
+        return guard
+    import app.datawarehouse_stats.bigquery_audit as audit
+    cache_key = 'bq_audit:filters'
+    cached = app.cache.get(cache_key)
+    if cached is not None:
+        return jsonify({'success': True, 'data': cached, 'error': None})
+    try:
+        data = audit.get_filter_options()
+        app.cache.set(cache_key, data, timeout=app.config['FASTBI_BQ_AUDIT_CACHE_TTL'])
+        return jsonify({'success': True, 'data': data, 'error': None})
+    except Exception as exc:
+        logging.error('bq_audit_filter_options failed: %s', exc)
+        return jsonify({'success': False, 'data': None, 'error': 'Failed to load filter options'}), 500
+
+
+@app.route('/stats/bq-audit/api/datamart/<datamart>')
+def bq_audit_datamart(datamart):
+    guard = _bq_audit_guard()
+    if guard is not None:
+        return guard
+    import app.datawarehouse_stats.bigquery_audit as audit
+    if not audit.is_valid_datamart(datamart):
+        return jsonify({'success': False, 'data': None, 'error': 'Unknown datamart'}), 404
+    filters = _bq_audit_filters()
+    cache_key = _bq_audit_cache_key('datamart:' + datamart, filters)
+    cached = app.cache.get(cache_key)
+    if cached is not None:
+        return jsonify({'success': True, 'data': cached, 'error': None})
+    try:
+        rows = audit.fetch_datamart(datamart, filters)
+        app.cache.set(cache_key, rows, timeout=app.config['FASTBI_BQ_AUDIT_CACHE_TTL'])
+        return jsonify({'success': True, 'data': rows, 'error': None})
+    except Exception as exc:
+        logging.error('bq_audit_datamart(%s) failed: %s', datamart, exc)
+        return jsonify({'success': False, 'data': None, 'error': 'Failed to load data'}), 500
+
 
 ### Platform external Services
 
