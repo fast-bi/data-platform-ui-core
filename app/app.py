@@ -973,7 +973,9 @@ def stats():
             mandatory_group = '/Data Platform Services/Data_Platform_Stats'
             role_based_groups = {'Admin', 'User', 'Viewer'}
 
-            # Check global cache first
+            # Check global cache first. Warehouse stats are derived from a
+            # nightly-refreshed source, so we cache the (expensive) fetch and
+            # reuse it across users instead of re-querying on every page load.
             stats_data = app.cache.get('global_stats')
             if stats_data is None:
                 # If global cache is empty, fetch stats based on data warehouse type
@@ -985,6 +987,10 @@ def stats():
                     stats_data = get_rd_stats()
                 elif app.config['FASTBI_PLATFORM_DWH'] == 'fabric':
                     stats_data = get_ft_stats()
+                # Persist so the next visitor hits the cache instead of BigQuery.
+                if stats_data:
+                    app.cache.set('global_stats', stats_data,
+                                  timeout=app.config['FASTBI_BQ_AUDIT_CACHE_TTL'])
 
             if mandatory_group in user_groups and not user_groups.isdisjoint(role_based_groups):
                 return render_template('stats.html',
@@ -1116,6 +1122,44 @@ def bq_audit_datamart(datamart):
     except Exception as exc:
         logging.error('bq_audit_datamart(%s) failed: %s', datamart, exc)
         return jsonify({'success': False, 'data': None, 'error': 'Failed to load data'}), 500
+
+
+@app.route('/stats/bq-audit/api/warm', methods=['POST'])
+def bq_audit_warm():
+    """Pre-populate the Redis cache for the unfiltered (default) views.
+
+    Intended to be called by the nightly Airflow job right after the
+    dbt-bigquery-monitoring models rebuild, so the first user of the day gets
+    warm cache instead of waiting on BigQuery. Authenticated with a shared
+    token header (X-Warm-Token) rather than OIDC, since it runs headless.
+    """
+    if not _bq_audit_enabled():
+        return jsonify({'success': False, 'data': None, 'error': 'BigQuery FinOps is not enabled'}), 404
+    expected = app.config.get('FASTBI_BQ_AUDIT_WARM_TOKEN')
+    if not expected:
+        return jsonify({'success': False, 'data': None, 'error': 'Warm endpoint disabled'}), 404
+    if request.headers.get('X-Warm-Token') != expected:
+        return jsonify({'success': False, 'data': None, 'error': 'Unauthorized'}), 401
+
+    import app.datawarehouse_stats.bigquery_audit as audit
+    ttl = app.config['FASTBI_BQ_AUDIT_CACHE_TTL']
+    warmed, failed = [], []
+
+    def _warm(cache_key, producer):
+        try:
+            app.cache.set(cache_key, producer(), timeout=ttl)
+            warmed.append(cache_key)
+        except Exception as exc:  # noqa: BLE001 - report per-key, keep going
+            logging.error('warm failed for %s: %s', cache_key, exc)
+            failed.append(cache_key)
+
+    _warm(_bq_audit_cache_key('summary', {}), lambda: audit.get_summary({}))
+    _warm('bq_audit:filters', audit.get_filter_options)
+    for name in audit.DATAMARTS:
+        _warm(_bq_audit_cache_key('datamart:' + name, {}),
+              lambda n=name: audit.fetch_datamart(n, {}))
+
+    return jsonify({'success': True, 'data': {'warmed': len(warmed), 'failed': failed}, 'error': None})
 
 
 ### Platform external Services

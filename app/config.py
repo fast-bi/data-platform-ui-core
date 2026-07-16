@@ -189,9 +189,15 @@ class Config:
     FASTBI_BQ_AUDIT_WAREHOUSE_PROJECT = os.environ.get('FASTBI_BQ_AUDIT_WAREHOUSE_PROJECT')
     FASTBI_BQ_AUDIT_WAREHOUSE_DATASET = os.environ.get('FASTBI_BQ_AUDIT_WAREHOUSE_DATASET', 'prod_dbt_bigquery_monitoring')
     FASTBI_BQ_AUDIT_WAREHOUSE_DATASET_REGION = os.environ.get('FASTBI_BQ_AUDIT_WAREHOUSE_DATASET_REGION')
-    # Cache TTL (seconds) for audit API responses. Data refreshes nightly, so a
-    # 1-hour default keeps the UI snappy without serving stale numbers.
-    FASTBI_BQ_AUDIT_CACHE_TTL = int(os.environ.get('FASTBI_BQ_AUDIT_CACHE_TTL', 3600))
+    # Cache TTL (seconds) for audit API responses AND the legacy warehouse
+    # stats. The underlying datamarts are rebuilt by a nightly dbt run and GCP
+    # only updates the billing export a few times a day, so there is no value in
+    # re-querying per request. Default 6h: fast all day, still picks up the
+    # nightly refresh within one window. Raise to 86400 to cache for a full day.
+    FASTBI_BQ_AUDIT_CACHE_TTL = int(os.environ.get('FASTBI_BQ_AUDIT_CACHE_TTL', 21600))
+    # Shared secret enabling the cache-warm endpoint (called by the nightly
+    # Airflow job after dbt completes). If unset, the endpoint is disabled.
+    FASTBI_BQ_AUDIT_WARM_TOKEN = os.environ.get('FASTBI_BQ_AUDIT_WARM_TOKEN')
 
     # Add the Celery configuration to your Flask app's configuration
     BQ_PROJECT_ID = os.getenv('BQ_PROJECT_ID')

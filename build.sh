@@ -22,6 +22,6 @@ docker buildx build . \
 docker buildx build . \
   --pull \
   --tag 4fastbi/data-platform-ui-core:dev-latest \
-  --tag 4fastbi/data-platform-ui-core:dev-v0.1.4 \
+  --tag 4fastbi/data-platform-ui-core:dev-v1.1.0 \
   --platform linux/amd64 \
   --push
